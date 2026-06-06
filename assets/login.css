@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(
+        135deg,
+        #0d6efd,
+        #4f46e5,
+        #7c3aed
+    );
+    padding:20px;
+}
+
+/* Login Card */
+.login-container{
+    width:100%;
+    max-width:450px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+    animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Heading */
+h1{
+    text-align:center;
+    color:#0d6efd;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+    font-size:0.95rem;
+}
+
+/* Inputs */
+input[type="email"],
+input[type="password"]{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    margin-bottom:15px;
+    font-size:15px;
+    transition:.3s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus{
+    outline:none;
+    border-color:#0d6efd;
+    box-shadow:0 0 0 4px rgba(13,110,253,.15);
+}
+
+/* Remember */
+.remember{
+    margin-bottom:10px;
+    color:#555;
+}
+
+/* Forgot Password */
+.forgot{
+    text-align:right;
+    margin-bottom:20px;
+}
+
+.forgot a{
+    text-decoration:none;
+    color:#0d6efd;
+    font-weight:500;
+}
+
+.forgot a:hover{
+    text-decoration:underline;
+}
+
+/* Login Button */
+button[type="submit"]{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#0d6efd;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button[type="submit"]:hover{
+    background:#0b5ed7;
+    transform:translateY(-2px);
+}
+
+/* OR Divider */
+.or{
+    text-align:center;
+    margin:25px 0;
+    color:#888;
+    font-size:14px;
+}
+
+/* Social Buttons */
+.social{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.social button{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    background:white;
+    font-weight:500;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.social button:hover{
+    background:#f8f9fa;
+    border-color:#0d6efd;
+}
+
+/* Create Account */
+.link{
+    text-align:center;
+    margin-top:25px;
+    color:#555;
+}
+
+.link a{
+    text-decoration:none;
+    color:#0d6efd;
+    font-weight:600;
+}
+
+.link a:hover{
+    text-decoration:underline;
+}
+
+/* Roles */
+.roles{
+    margin-top:25px;
+    text-align:center;
+    padding-top:20px;
+    border-top:1px solid #eee;
+}
+
+.roles p{
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+.roles label{
+    cursor:pointer;
+    color:#444;
+}
+
+/* Mobile */
+@media(max-width:576px){
+
+    .login-container{
+        padding:25px;
+    }
+
+    h1{
+        font-size:1.8rem;
+    }
+}
