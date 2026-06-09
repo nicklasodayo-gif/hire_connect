@@ -66,7 +66,7 @@ session_start();
                     </li>
 
                     <li class="nav-item">
-                        <a class="btn btn-success" href="register.php">
+                        <a class="btn btn-success" href="regester.php">
                             Create Account
                         </a>
                     </li>
