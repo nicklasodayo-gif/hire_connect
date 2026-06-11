@@ -74,12 +74,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Career Advice | HireConnect</title>
 
     <link rel="stylesheet" href="assets/advice.css">
+     <link href="assets\home_page.css">
 </head>
 <body>
 
 <header>
     <h1>Career Advice Center</h1>
     <p>Discover the best career path based on your interests and skills.</p>
+
+<a href="index.php" class="floating-home">
+    🏠
+</a>
 </header>
 
 <div class="container">

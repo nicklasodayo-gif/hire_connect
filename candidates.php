@@ -34,8 +34,15 @@ $found = false;
     <title>Search Candidates</title>
 
     <link rel="stylesheet" href="assets\candindtes.css">
+    <link href="assets\home_page.css">
 </head>
 <body>
+    
+      <header>
+<a href="index.php" class="floating-home">
+    🏠
+</a>
+</header>
 
 <div class="container">
 

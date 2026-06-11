@@ -89,7 +89,7 @@ session_start();
                 <?php endif; ?>
 
                 <li class="nav-item">
-                    <a class="btn btn-primary" href="post-job.php">
+                    <a class="btn btn-primary" href="post_job.php">
                         Post a Job
                     </a>
                 </li>
@@ -231,7 +231,7 @@ session_start();
 
                 <ul class="list-unstyled">
                     <li><a href="career_advice.php">Career Advice</a></li>
-                    <li><a href="interview-prep.php">Interview Prep</a></li>
+                    <li><a href="inerview_prep.php">Interview Prep</a></li>
                 </ul>
 
             </div>
@@ -242,7 +242,7 @@ session_start();
 
                 <ul class="list-unstyled">
                     <li><a href="about.php">About Us</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="contact..php">Contact</a></li>
                 </ul>
 
             </div>
