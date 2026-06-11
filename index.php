@@ -19,11 +19,13 @@ session_start();
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
 
-        <a class="navbar-brand fw-bold text-primary" href="#">
+        <a class="navbar-brand fw-bold text-primary" href="index.php">
             HireConnect
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -32,22 +34,35 @@ session_start();
             <ul class="navbar-nav align-items-center gap-lg-3">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="jobs.php">Jobs</a>
+                    <a class="nav-link" href="jobs.php">
+                        Jobs
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Companies</a>
+                    <a class="nav-link" href="companies.php">
+                        Companies
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Career Advice</a>
+                    <a class="nav-link" href="career_advice.php">
+                        Career Advice
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="candidates.php">
+                        Search Candidates
+                    </a>
                 </li>
 
                 <?php if (isset($_SESSION["user_id"])): ?>
 
                     <li class="nav-item">
                         <span class="nav-link">
-                            Welcome, <?php echo htmlspecialchars($_SESSION["fullname"]); ?>
+                            Welcome,
+                            <?php echo htmlspecialchars($_SESSION["fullname"]); ?>
                         </span>
                     </li>
 
@@ -61,12 +76,12 @@ session_start();
 
                     <li class="nav-item">
                         <a class="btn btn-outline-primary" href="login.php">
-                            Sign In
+                            Log In
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="btn btn-success" href="regester.php">
+                        <a class="btn btn-success" href="register.php">
                             Create Account
                         </a>
                     </li>
@@ -82,11 +97,13 @@ session_start();
             </ul>
 
         </div>
+
     </div>
 </nav>
 
 <!-- Hero Section -->
 <section class="hero py-5">
+
     <div class="container">
 
         <div class="row align-items-center g-5">
@@ -107,23 +124,34 @@ session_start();
 
                 <p class="lead text-muted my-4">
                     Search thousands of verified job listings,
-                    internships, and remote opportunities from leading companies.
+                    internships, and remote opportunities
+                    from leading companies.
                 </p>
 
-                <form class="row g-2">
+                <form action="jobs.php" method="GET" class="row g-2">
 
                     <div class="col-md-5">
-                        <input type="text" class="form-control form-control-lg"
-                               placeholder="Job title, keywords, or company">
+                        <input
+                            type="text"
+                            name="keyword"
+                            class="form-control form-control-lg"
+                            placeholder="Job title, keywords, or company"
+                        >
                     </div>
 
                     <div class="col-md-4">
-                        <input type="text" class="form-control form-control-lg"
-                               placeholder="Location">
+                        <input
+                            type="text"
+                            name="location"
+                            class="form-control form-control-lg"
+                            placeholder="Location"
+                        >
                     </div>
 
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-lg w-100">
                             Search Jobs
                         </button>
                     </div>
@@ -152,14 +180,19 @@ session_start();
             </div>
 
             <div class="col-lg-6 text-center">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80"
+
+                <img
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80"
                     alt="People working together"
-                    class="img-fluid rounded-4 shadow">
+                    class="img-fluid rounded-4 shadow"
+                >
+
             </div>
 
         </div>
 
     </div>
+
 </section>
 
 <!-- Footer -->
@@ -170,36 +203,48 @@ session_start();
         <div class="row gy-4">
 
             <div class="col-md-3">
+
                 <h5>Job Seekers</h5>
+
                 <ul class="list-unstyled">
-                    <li><a href="/jobs">Browse Jobs</a></li>
-                    <li><a href="/remote-jobs">Remote Jobs</a></li>
-                    <li><a href="/internships">Internships</a></li>
+                    <li><a href="jobs.php">Browse Jobs</a></li>
+                    <li><a href="jobs.php">Remote Jobs</a></li>
+                    <li><a href="jobs.php">Internships</a></li>
                 </ul>
+
             </div>
 
             <div class="col-md-3">
+
                 <h5>Employers</h5>
+
                 <ul class="list-unstyled">
-                    <li><a href="/post-job">Post a Job</a></li>
-                    <li><a href="/candidates">Search Candidates</a></li>
+                    <li><a href="post-job.php">Post a Job</a></li>
+                    <li><a href="candidates.php">Search Candidates</a></li>
                 </ul>
+
             </div>
 
             <div class="col-md-3">
+
                 <h5>Resources</h5>
+
                 <ul class="list-unstyled">
-                    <li><a href="/blog">Career Blog</a></li>
-                    <li><a href="/interview-prep">Interview Prep</a></li>
+                    <li><a href="career_advice.php">Career Advice</a></li>
+                    <li><a href="interview-prep.php">Interview Prep</a></li>
                 </ul>
+
             </div>
 
             <div class="col-md-3">
+
                 <h5>Company</h5>
+
                 <ul class="list-unstyled">
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
+
             </div>
 
         </div>

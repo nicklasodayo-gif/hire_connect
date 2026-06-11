@@ -1,90 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireConnect Login</title>
+
+    <link rel="stylesheet" href="assets/login.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>HireConnect</h1>
+    <div class="subtitle">Find Your Dream Job Today</div>
+
+    <?php if (!empty($message)): ?>
+    <div class="alert alert-danger">
+        <?php echo $message; ?>
+    </div>
+<?php endif; ?>
+
+    <form action="login.php" method="POST">
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            required
+        >
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+        >
+
+        <div class="remember">
+            <label>
+                <input type="checkbox" name="remember">
+                Remember Me
+            </label>
+        </div>
+
+        <div class="forgot">
+            <a href="#">Forgot Password?</a>
+        </div>
+
+        <button type="submit">LOGIN</button>
+
+        <div class="or">----------- OR -----------</div>
+
+        <div class="social">
+            <button type="button">Continue with Google</button>
+            <button type="button">Continue with LinkedIn</button>
+        </div>
+
+        <div class="link">
+            Don't have an account?
+            <a href="regester.php">Create Account</a>
+        </div>
+
+        <div class="roles">
+            <p>Select Account Type:</p>
+
+            <label>
+                <input
+                    type="radio"
+                    name="role"
+                    value="jobseeker"
+                    checked
+                >
+                Job Seeker
+            </label>
+
+            <br>
+
+            <label>
+                <input
+                    type="radio"
+                    name="role"
+                    value="employer"
+                >
+                Employer
+            </label>
+        </div>
+
+    </form>
+
+</div>
 <?php
 session_start();
-include "db.php";
 
-$error = "";
+$message = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+    $role = $_POST["role"];
 
-    $sql = "SELECT * FROM users WHERE email='$email'";
-    $result = mysqli_query($conn, $sql);
+    // Demo accounts
+    $users = [
+        [
+            "email" => "jobseeker@hireconnect.com",
+            "password" => "123456",
+            "role" => "jobseeker"
+        ],
+        [
+            "email" => "employer@hireconnect.com",
+            "password" => "123456",
+            "role" => "employer"
+        ]
+    ];
 
-    if (mysqli_num_rows($result) > 0) {
+    $authenticated = false;
 
-        $user = mysqli_fetch_assoc($result);
+    foreach ($users as $user) {
 
-        if (password_verify($password, $user["password"])) {
+        if (
+            $user["email"] === $email &&
+            $user["password"] === $password &&
+            $user["role"] === $role
+        ) {
 
-            $_SESSION["user_id"] = $user["id"];
-            $_SESSION["fullname"] = $user["fullname"];
+            $_SESSION["email"] = $email;
+            $_SESSION["role"] = $role;
 
-            header("Location: index.php");
-            exit();
+            $authenticated = true;
 
-        } else {
-            $error = "Incorrect password";
+            if ($role === "jobseeker") {
+                header("Location: dashboard.php");
+                exit();
+            } else {
+                header("Location: employer-dashboard.php");
+                exit();
+            }
         }
+    }
 
-    } else {
-        $error = "Account not found";
+    if (!$authenticated) {
+        $message = "Invalid email, password, or account type.";
     }
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
-<div class="container mt-5">
-
-    <div class="card mx-auto" style="max-width:500px;">
-        <div class="card-body">
-
-            <h2>Login</h2>
-
-            <p class="text-danger">
-                <?php echo $error; ?>
-            </p>
-
-            <form method="POST">
-
-                <input
-                    type="email"
-                    name="email"
-                    class="form-control mb-3"
-                    placeholder="Email"
-                    required>
-
-                <input
-                    type="password"
-                    name="password"
-                    class="form-control mb-3"
-                    placeholder="Password"
-                    required>
-
-                <button class="btn btn-primary w-100">
-                    Login
-                </button>
-
-            </form>
-
-            <p class="mt-3">
-                Don't have an account?
-                <a href="register.php">Create Account</a>
-            </p>
-
-        </div>
-    </div>
-
-</div>
+<script src="assets/scripts.js"></script>
 
 </body>
 </html>
