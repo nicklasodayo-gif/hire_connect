@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="assets/job.css">
 </head>
 <body>
+    <header>
+<a href="index.php" class="floating-home">
+    🏠
+</a>
+</header>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">

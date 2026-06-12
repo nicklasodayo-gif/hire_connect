@@ -41,6 +41,12 @@
     </style>
 </head>
 <body>
+    
+<header>
+<a href="index.php" class="floating-home">
+    🏠
+</a>
+</header>
 
 <!-- Hero -->
 <section class="hero">

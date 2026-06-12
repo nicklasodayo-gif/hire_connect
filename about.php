@@ -82,7 +82,7 @@
 
             <div class="col-lg-6">
                 <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80"
+                    src="assets\images\meeting.jpg"
                     class="img-fluid rounded shadow"
                     alt="Team Collaboration"
                 >

@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Career Advice | HireConnect</title>
 
     <link rel="stylesheet" href="assets/advice.css">
-     <link href="assets\home_page.css">
+    <link href="assets\home_page.css">
 </head>
 <body>
 

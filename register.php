@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $stmt = $conn->prepare(
                 "INSERT INTO users(fullname, email, password)
-                 VALUES (?, ?, ?)"
+                VALUES (?, ?, ?)"
             );
 
             $stmt->bind_param(
@@ -81,6 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
+    
+    <header>
+<a href="index.php" class="floating-home">
+    🏠
+</a>
+</header>
 
 <div class="container mt-5">
 

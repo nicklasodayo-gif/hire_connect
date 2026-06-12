@@ -40,7 +40,7 @@ session_start();
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="companies.php">
+                    <a class="nav-link" href="jobs.php">
                         Companies
                     </a>
                 </li>
@@ -182,7 +182,7 @@ session_start();
             <div class="col-lg-6 text-center">
 
                 <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80"
+                    src="assets\images\meeting.jpg"
                     alt="People working together"
                     class="img-fluid rounded-4 shadow"
                 >
@@ -219,7 +219,7 @@ session_start();
                 <h5>Employers</h5>
 
                 <ul class="list-unstyled">
-                    <li><a href="post-job.php">Post a Job</a></li>
+                    <li><a href="post_job.php">Post a Job</a></li>
                     <li><a href="candidates.php">Search Candidates</a></li>
                 </ul>
 

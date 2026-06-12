@@ -36,6 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </style>
 </head>
 <body>
+    
+<header>
+<a href="index.php" class="floating-home">
+    🏠
+</a>
+</header>
 
 <div class="container">
 

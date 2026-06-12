@@ -13,7 +13,11 @@ if (!isset($_SESSION["username"])) {
     <title>Home</title>
 </head>
 <body>
-
+<header>
+<a href="index.php" class="floating-home">
+    🏠
+</a>
+</header>
 <h1>Welcome <?php echo $_SESSION["username"]; ?>!</h1>
 
 <p>You have successfully logged in.</p>
