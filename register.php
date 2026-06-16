@@ -1,159 +1,132 @@
-<?php
-include "db.php";
-
-$message = "";
-$messageType = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $fullname = trim($_POST["fullname"]);
-    $email = trim($_POST["email"]);
-    $password = $_POST["password"];
-
-    // Validate password length
-    if (strlen($password) < 6) {
-
-        $message = "Password must be at least 6 characters long.";
-        $messageType = "danger";
-
-    } else {
-
-        // Check if email already exists
-        $check = $conn->prepare(
-            "SELECT id FROM users WHERE email = ?"
-        );
-
-        $check->bind_param("s", $email);
-        $check->execute();
-
-        $result = $check->get_result();
-
-        if ($result->num_rows > 0) {
-
-            $message = "Email already exists.";
-            $messageType = "danger";
-
-        } else {
-
-            $hashedPassword = password_hash(
-                $password,
-                PASSWORD_DEFAULT
-            );
-
-            $stmt = $conn->prepare(
-                "INSERT INTO users(fullname, email, password)
-                VALUES (?, ?, ?)"
-            );
-
-            $stmt->bind_param(
-                "sss",
-                $fullname,
-                $email,
-                $hashedPassword
-            );
-
-            if ($stmt->execute()) {
-
-                $message = "Account created successfully.";
-                $messageType = "success";
-
-            } else {
-
-                $message = "Failed to create account.";
-                $messageType = "danger";
-            }
-
-            $stmt->close();
-        }
-
-        $check->close();
-    }
-}
-?>
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account | HireConnect</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+```
+<link rel="stylesheet" href="assets/login.css">
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+```
+
 </head>
-<body class="bg-light">
-    
-    <header>
-<a href="index.php" class="floating-home">
-    🏠
-</a>
+
+<body>
+
+<header>
+    <a href="index.php" class="floating-home">🏠</a>
 </header>
 
-<div class="container mt-5">
+<div class="register_container">
 
-    <div class="card shadow mx-auto" style="max-width:500px;">
+```
+<h1>HireConnect</h1>
 
-        <div class="card-body">
+<div class="subtitle">
+    Find Your Dream Job Today
+</div>
 
-            <h2 class="text-center mb-4">
-                Create Account
-            </h2>
+<?php if (!empty($message)): ?>
+    <div class="alert alert-info">
+        <?php echo $message; ?>
+    </div>
+<?php endif; ?>
 
-            <?php if (!empty($message)): ?>
-                <div class="alert alert-<?php echo $messageType; ?>">
-                    <?php echo htmlspecialchars($message); ?>
-                </div>
-            <?php endif; ?>
+<form action="" method="POST">
 
-            <form method="POST">
+    <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        required
+    >
 
-                <div class="mb-3">
-                    <input
-                        type="text"
-                        name="fullname"
-                        class="form-control"
-                        placeholder="Full Name"
-                        required
-                    >
-                </div>
+    <input
+        type="email"
+        name="email"
+        placeholder="Email Address"
+        required
+    >
 
-                <div class="mb-3">
-                    <input
-                        type="email"
-                        name="email"
-                        class="form-control"
-                        placeholder="Email Address"
-                        required
-                    >
-                </div>
+    <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Create Password"
+        required
+    >
 
-                <div class="mb-3">
-                    <input
-                        type="password"
-                        name="password"
-                        class="form-control"
-                        placeholder="Password (minimum 6 characters)"
-                        required
-                    >
-                </div>
+    <div class="show-password">
+        <label>
+            <input
+                type="checkbox"
+                onclick="togglePassword()"
+            >
+            Show Password
+        </label>
+    </div>
 
-                <button
-                    type="submit"
-                    class="btn btn-primary w-100">
-                    Create Account
-                </button>
+    <div class="roles">
 
-            </form>
+        <p>Select Account Type:</p>
 
-            <p class="text-center mt-3">
-                Already have an account?
-                <a href="login.php">Login</a>
-            </p>
+        <label>
+            <input
+                type="radio"
+                name="role"
+                value="jobseeker"
+                checked
+            >
+            Job Seeker
+        </label>
 
-        </div>
+        <br>
+
+        <label>
+            <input
+                type="radio"
+                name="role"
+                value="employer"
+            >
+            Employer
+        </label>
 
     </div>
 
+    <br>
+
+    <button type="submit">
+        Create Account
+    </button>
+
+    <div class="link mt-3">
+        Already have an account?
+        <a href="login.php">Login</a>
+    </div>
+
+</form>
+```
+
 </div>
+
+<script>
+function togglePassword() {
+
+    const passwordField =
+        document.getElementById("password");
+
+    passwordField.type =
+        passwordField.type === "password"
+            ? "text"
+            : "password";
+}
+</script>
 
 </body>
 </html>
