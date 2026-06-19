@@ -1,3 +1,89 @@
+<?php
+
+$message = "";
+
+/* Database Connection */
+$conn = new mysqli(
+    "localhost",
+    "root",
+    "",
+    "hireconnect"
+);
+
+/* Check Connection */
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+/* Form Submission */
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
+    $password = $_POST["password"];
+    $role = $_POST["role"];
+
+    // Hash password
+    $hashedPassword = password_hash(
+        $password,
+        PASSWORD_DEFAULT
+    );
+
+    // Check if email already exists
+    $check = $conn->prepare(
+        "SELECT id FROM users WHERE email = ?"
+    );
+
+    $check->bind_param("s", $email);
+    $check->execute();
+    $check->store_result();
+
+    if ($check->num_rows > 0) {
+
+        $message = "Email already registered.";
+
+    } else {
+
+    $check = $conn->prepare(
+    "SELECT id FROM users WHERE email = ?"
+);
+
+if (!$check) {
+    die("Prepare Error: " . $conn->error);
+}
+
+$check->bind_param("s", $email);
+
+        $stmt->bind_param(
+            "ssss",
+            $username,
+            $email,
+            $hashedPassword,
+            $role
+        );
+
+        if ($stmt->execute()) {
+
+            $message = "Account created successfully!";
+
+            // Optional redirect
+            // header("Location: login.php");
+            // exit();
+
+        } else {
+
+            $message = "Registration failed.";
+        }
+
+        $stmt->close();
+    }
+
+    $check->close();
+}
+
+$conn->close();
+
+?>
 <!DOCTYPE html>
 
 <html lang="en">
