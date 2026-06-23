@@ -160,10 +160,10 @@
             <div>
                 <h4>For Employers</h4>
                 <ul>
-                    <li>Post a Job</li>
-                    <li>Browse Candidates</li>
-                    <li>Employer Login</li>
-                    <li>Register</li>
+                    <li><a href="assets\employer\post_job.php">Post a Job</a></li>
+                    <li><a href="assets\employer\view_applicants.php">Browse Candidates</a></li>
+                    <li><a href="login.php">Employer Login</a></li>
+                    <li><a href="register.php">Register</a></li>
                 </ul>
             </div>
 
