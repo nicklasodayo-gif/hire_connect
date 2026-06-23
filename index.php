@@ -1,265 +1,179 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HireConnect - Find Your Dream Job</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/home.css">
+    <title>HireConnect</title>
+    <link rel="stylesheet" href="assets\home.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
+    <!-- Header -->
+    <header>
+        <div class="logo">HireConnect</div>
 
-        <a class="navbar-brand fw-bold text-primary" href="index.php">
-            HireConnect
-        </a>
-
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-
-            <ul class="navbar-nav align-items-center gap-lg-3">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="jobs.php">
-                        Jobs
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="jobs.php">
-                        Companies
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="career_advice.php">
-                        Career Advice
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="candidates.php">
-                        Search Candidates
-                    </a>
-                </li>
-
-                <?php if (isset($_SESSION["user_id"])): ?>
-
-                    <li class="nav-item">
-                        <span class="nav-link">
-                            Welcome,
-                            <?php echo htmlspecialchars($_SESSION["fullname"]); ?>
-                        </span>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="btn btn-danger" href="logout.php">
-                            Logout
-                        </a>
-                    </li>
-
-                <?php else: ?>
-
-                    <li class="nav-item">
-                        <a class="btn btn-outline-primary" href="login.php">
-                            Log In
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="btn btn-success" href="register.php">
-                            Create Account
-                        </a>
-                    </li>
-
-                <?php endif; ?>
-
-                <li class="nav-item">
-                    <a class="btn btn-primary" href="post_job.php">
-                        Post a Job
-                    </a>
-                </li>
-
+        <nav>
+            <ul>
+                <li><a href="index.php" class="active">Home</a></li>
+                <li><a href="about.php">About Us</a></li>
+                <li><a href="jobs.php">Jobs</a></li>
+                <li><a href="FQA.php">FQA</a></li>
+                <li><a href="contact.php">Contact Us</a></li>
             </ul>
+        </nav>
+
+        <div class="auth-buttons">
+            <button class="login">Login</button>
+            <button class="register">Register</button>
+        </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-text">
+            <span class="badge">
+                <i class="fa-solid fa-briefcase"></i>
+                Your Future Starts Here
+            </span>
+
+            <h1>
+                Find Your <br>
+                <span>Dream Job</span> Today
+            </h1>
+
+            <p>
+                Connect with top employers, explore thousands of jobs,
+                and build your career with HireConnect.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="browse">
+                    Browse Jobs <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="started">
+                    Get Started <i class="fa-regular fa-user"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="assets\images\OIP.webp"
+                alt="Professional Woman">
+
+            <div class="floating-card card1">
+                <h4>Find Jobs</h4>
+                <p>Search available opportunities</p>
+            </div>
+
+            <div class="floating-card card2">
+                <h4>Upload CV</h4>
+                <p>Get noticed by employers</p>
+            </div>
+
+            <div class="floating-card card3">
+                <h4>Get Hired</h4>
+                <p>Apply and track applications</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+
+        <h2>Why Choose HireConnect?</h2>
+
+        <div class="feature-container">
+
+            <div class="feature-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <h3>Search Jobs</h3>
+                <p>
+                    Find opportunities that match your skills and experience.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <i class="fa-solid fa-upload"></i>
+                <h3>Upload CV</h3>
+                <p>
+                    Let employers discover your profile and contact you.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <i class="fa-solid fa-user-check"></i>
+                <h3>Get Hired Fast</h3>
+                <p>
+                    Apply easily and track your progress.
+                </p>
+            </div>
 
         </div>
 
-    </div>
-</nav>
+    </section>
 
-<!-- Hero Section -->
-<section class="hero py-5">
+    <!-- Footer -->
+    <footer>
 
-    <div class="container">
+        <div class="footer-grid">
 
-        <div class="row align-items-center g-5">
-
-            <div class="col-lg-6">
-
-                <span class="hero-badge">
-                    🚀 Find Your Dream Job Today
-                </span>
-
-                <h1 class="display-4 fw-bold mt-3">
-                    Connect With Top Employers &
-                    Discover
-                    <span class="text-primary">
-                        Your Next Career Opportunity
-                    </span>
-                </h1>
-
-                <p class="lead text-muted my-4">
-                    Search thousands of verified job listings,
-                    internships, and remote opportunities
-                    from leading companies.
+            <div>
+                <h3>HireConnect</h3>
+                <p>
+                    Connecting talented professionals with top employers
+                    across the world.
                 </p>
 
-                <form action="jobs.php" method="GET" class="row g-2">
-
-                    <div class="col-md-5">
-                        <input
-                            type="text"
-                            name="keyword"
-                            class="form-control form-control-lg"
-                            placeholder="Job title, keywords, or company"
-                        >
-                    </div>
-
-                    <div class="col-md-4">
-                        <input
-                            type="text"
-                            name="location"
-                            class="form-control form-control-lg"
-                            placeholder="Location"
-                        >
-                    </div>
-
-                    <div class="col-md-3">
-                        <button
-                            type="submit"
-                            class="btn btn-primary btn-lg w-100">
-                            Search Jobs
-                        </button>
-                    </div>
-
-                </form>
-
-                <div class="row text-center mt-5">
-
-                    <div class="col-4">
-                        <h3 class="fw-bold">50K+</h3>
-                        <p class="text-muted">Active Jobs</p>
-                    </div>
-
-                    <div class="col-4">
-                        <h3 class="fw-bold">10K+</h3>
-                        <p class="text-muted">Companies</p>
-                    </div>
-
-                    <div class="col-4">
-                        <h3 class="fw-bold">1M+</h3>
-                        <p class="text-muted">Job Seekers</p>
-                    </div>
-
+                <div class="socials">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
                 </div>
-
             </div>
 
-            <div class="col-lg-6 text-center">
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Jobs</li>
+                    <li>Contact Us</li>
+                </ul>
+            </div>
 
-                <img
-                    src="assets\images\meeting.jpg"
-                    alt="People working together"
-                    class="img-fluid rounded-4 shadow"
-                >
+            <div>
+                <h4>For Job Seekers</h4>
+                <ul>
+                    <li>Browse Jobs</li>
+                    <li>Upload CV</li>
+                    <li>Career Tips</li>
+                    <li>Register</li>
+                </ul>
+            </div>
 
+            <div>
+                <h4>For Employers</h4>
+                <ul>
+                    <li>Post a Job</li>
+                    <li>Browse Candidates</li>
+                    <li>Employer Login</li>
+                    <li>Register</li>
+                </ul>
             </div>
 
         </div>
 
-    </div>
+        <p class="copyright">
+            © 2025 HireConnect. All rights reserved.
+        </p>
 
-</section>
-
-<!-- Footer -->
-<footer class="footer bg-dark text-light pt-5">
-
-    <div class="container">
-
-        <div class="row gy-4">
-
-            <div class="col-md-3">
-
-                <h5>Job Seekers</h5>
-
-                <ul class="list-unstyled">
-                    <li><a href="jobs.php">Browse Jobs</a></li>
-                    <li><a href="jobs.php">Remote Jobs</a></li>
-                    <li><a href="jobs.php">Internships</a></li>
-                </ul>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <h5>Employers</h5>
-
-                <ul class="list-unstyled">
-                    <li><a href="post_job.php">Post a Job</a></li>
-                    <li><a href="candidates.php">Search Candidates</a></li>
-                </ul>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <h5>Resources</h5>
-
-                <ul class="list-unstyled">
-                    <li><a href="career_advice.php">Career Advice</a></li>
-                    <li><a href="inerview_prep.php">Interview Prep</a></li>
-                </ul>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <h5>Company</h5>
-
-                <ul class="list-unstyled">
-                    <li><a href="about.php">About Us</a></li>
-                    <li><a href="contact..php">Contact</a></li>
-                </ul>
-
-            </div>
-
-        </div>
-
-        <hr class="my-4">
-
-        <div class="text-center">
-            <p>© 2026 HireConnect. All rights reserved.</p>
-        </div>
-
-    </div>
-
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
 
 </body>
 </html>
