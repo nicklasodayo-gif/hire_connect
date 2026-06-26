@@ -1,248 +1,1853 @@
+body{
+    background:red !important;
+}
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Reset */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background:#f5f7fb;
+
+    font-family:'Poppins',sans-serif;
+    background:#f8f9fc;
+    color:#333;
+    line-height:1.6;
+
 }
 
-/* Header */
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul{
+    list-style:none;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+/* ===========================
+HEADER
+=========================== */
+
 header{
-    background:#0d4ed8;
-    color:white;
+
+    width:100%;
+    height:80px;
+
+    background:#fff;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 60px;
+
+    padding:0 8%;
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    z-index:1000;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+
 }
 
-.logo{
-    font-size:24px;
-    font-weight:bold;
+/* Logo */
+
+.logo a{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#0d6efd;
+
+    letter-spacing:.5px;
+
 }
+
+/* Navigation */
 
 nav ul{
+
     display:flex;
-    list-style:none;
-    gap:30px;
+    gap:35px;
+
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
+nav ul li a{
+
+    font-size:16px;
+
+    font-weight:500;
+
+    transition:.3s;
+
+    position:relative;
+
 }
 
-nav .active{
-    border-bottom:2px solid white;
-    padding-bottom:5px;
+nav ul li a:hover{
+
+    color:#0d6efd;
+
 }
 
-.auth-buttons button{
-    padding:10px 20px;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
+nav ul li a.active{
+
+    color:#0d6efd;
+
 }
+
+nav ul li a::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:0;
+
+    height:3px;
+
+    left:0;
+    bottom:-8px;
+
+    background:#0d6efd;
+
+    transition:.3s;
+
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after{
+
+    width:100%;
+
+}
+
+/* ===========================
+AUTH BUTTONS
+=========================== */
+
+.auth-buttons{
+
+    display:flex;
+    gap:15px;
+
+}
+
+.login,
+.register,
+.dashboard-btn,
+.logout-btn{
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+/* Login */
 
 .login{
-    background:transparent;
-    color:white;
-    border:1px solid white !important;
+
+    border:2px solid #0d6efd;
+
+    color:#0d6efd;
+
+    background:white;
+
 }
+
+.login:hover{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+/* Register */
 
 .register{
-    background:white;
-    color:#0d4ed8;
+
+    background:#0d6efd;
+
+    color:white;
+
 }
 
-/* Hero */
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:70px;
-    background:#eef4ff;
+.register:hover{
+
+    background:#0056d2;
+
 }
+
+/* Dashboard */
+
+.dashboard-btn{
+
+    background:#198754;
+
+    color:#fff;
+
+}
+
+.dashboard-btn:hover{
+
+    background:#157347;
+
+}
+
+/* Logout */
+
+.logout-btn{
+
+    background:#dc3545;
+
+    color:#fff;
+
+}
+
+.logout-btn:hover{
+
+    background:#bb2d3b;
+
+}
+
+/* ===========================
+HERO
+=========================== */
+
+.hero{
+
+    margin-top:80px;
+
+    min-height:90vh;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:80px 8%;
+
+    background:linear-gradient(135deg,#eef4ff,#ffffff);
+
+}
+
+/* Left */
 
 .hero-text{
+
     width:50%;
+
 }
 
 .badge{
-    background:white;
-    padding:8px 15px;
-    border-radius:20px;
-    display:inline-block;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#dbeafe;
+
+    color:#0d6efd;
+
+    padding:12px 22px;
+
+    border-radius:50px;
+
+    font-size:15px;
+
+    margin-bottom:30px;
+
+    font-weight:600;
+
+}
+
+.hero-text h1{
+
+    font-size:62px;
+
+    font-weight:800;
+
+    line-height:1.2;
+
     margin-bottom:20px;
-    font-size:14px;
+
 }
 
-.hero h1{
-    font-size:60px;
-    color:#111827;
+.hero-text h1 span{
+
+    color:#0d6efd;
+
 }
 
-.hero h1 span{
-    color:#2563eb;
+.hero-text p{
+
+    font-size:18px;
+
+    color:#666;
+
+    margin-bottom:40px;
+
 }
 
-.hero p{
-    margin:20px 0;
-    color:#555;
-    line-height:1.6;
-}
+/* ===========================
+HERO BUTTONS
+=========================== */
 
 .hero-buttons{
+
     display:flex;
-    gap:15px;
+
+    gap:20px;
+
 }
+
+.browse,
+.started{
+
+    padding:15px 35px;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+/* Browse */
 
 .browse{
-    background:#2563eb;
+
+    background:#0d6efd;
+
     color:white;
-    border:none;
-    padding:14px 25px;
-    border-radius:6px;
+
 }
+
+.browse:hover{
+
+    transform:translateY(-4px);
+
+    background:#0056d2;
+
+}
+
+/* Started */
 
 .started{
+
+    border:2px solid #0d6efd;
+
+    color:#0d6efd;
+
     background:white;
-    border:1px solid #ccc;
-    padding:14px 25px;
-    border-radius:6px;
+
 }
 
+.started:hover{
+
+    background:#0d6efd;
+
+    color:white;
+
+}
+
+/* ===========================
+RIGHT IMAGE
+=========================== */
+
 .hero-image{
+
+    width:45%;
+
     position:relative;
+
 }
 
 .hero-image img{
-    width:450px;
-    border-radius:20px;
+
+    width:100%;
+
+    border-radius:25px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
 }
+
+/* ===========================
+FLOATING CARDS
+=========================== */
 
 .floating-card{
+
     position:absolute;
+
     background:white;
-    padding:12px;
-    border-radius:10px;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
+
+    border-radius:15px;
+
+    padding:18px;
+
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+
+    animation:float 4s ease-in-out infinite;
+
 }
 
+.floating-card h4{
+
+    color:#0d6efd;
+
+    font-size:22px;
+
+    margin-bottom:5px;
+
+}
+
+.floating-card p{
+
+    font-size:14px;
+
+    color:#777;
+
+}
+
+/* Positions */
+
 .card1{
-    top:20px;
-    left:-50px;
+
+    top:8%;
+
+    left:-40px;
+
 }
 
 .card2{
-    top:120px;
-    left:-70px;
+
+    bottom:30%;
+
+    right:-30px;
+
 }
 
 .card3{
-    bottom:40px;
-    right:-40px;
+
+    bottom:-25px;
+
+    left:40px;
+
 }
 
-/* Features */
-.features{
-    padding:60px;
+/* ===========================
+FLOAT ANIMATION
+=========================== */
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===========================
+SECTION DEFAULT
+=========================== */
+
+section{
+
+    padding:90px 8%;
+
+}
+
+section h2{
+
+    font-size:40px;
+
     text-align:center;
+
+    margin-bottom:20px;
+
+    color:#222;
+
 }
 
-.features h2{
-    margin-bottom:40px;
+.section-text{
+
+    max-width:700px;
+
+    margin:0 auto 50px;
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:17px;
+
+}
+
+/* ===========================================
+   HIRECONNECT HOME PAGE CSS
+   PART 2
+=========================================== */
+
+/* ===========================
+STATISTICS
+=========================== */
+
+.statistics{
+    background:#ffffff;
+}
+
+.stats-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+    margin-top:50px;
+}
+
+.stat-card{
+
+    background:#fff;
+
+    padding:40px 25px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.stat-card i{
+
+    font-size:45px;
+
+    color:#0d6efd;
+
+    margin-bottom:20px;
+
+}
+
+.stat-card h2{
+
+    font-size:40px;
+
+    color:#0d6efd;
+
+    margin-bottom:10px;
+
+}
+
+.stat-card p{
+
+    font-size:17px;
+
+    color:#666;
+
+}
+
+/* ===========================
+FEATURED JOBS
+=========================== */
+
+.featured-jobs{
+
+    background:#f8f9fc;
+
+}
+
+.featured-jobs p{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:45px;
+
+}
+
+.job-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+/* ===========================
+JOB CARD
+=========================== */
+
+.job-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.job-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.job-card img{
+
+    width:100%;
+
+    height:180px;
+
+    object-fit:contain;
+
+    background:#fff;
+
+    padding:20px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.job-card h3{
+
+    font-size:24px;
+
+    padding:20px 20px 10px;
+
+    color:#222;
+
+}
+
+.job-card p{
+
+    padding:0 20px;
+
+    margin-bottom:10px;
+
+    color:#666;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    text-align:left;
+
+}
+
+.job-card i{
+
+    color:#0d6efd;
+
+}
+
+.job-card .view-job{
+
+    display:inline-block;
+
+    margin:20px;
+
+    padding:12px 25px;
+
+    background:#0d6efd;
+
+    color:#fff;
+
+    border-radius:8px;
+
+    transition:.3s;
+
+}
+
+.job-card .view-job:hover{
+
+    background:#0056d2;
+
+}
+
+/* ===========================
+JOB CATEGORIES
+=========================== */
+
+.categories{
+
+    background:#ffffff;
+
+}
+
+.category-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-top:50px;
+
+}
+
+.category-grid a{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    font-weight:600;
+
+    color:#444;
+
+}
+
+.category-grid a:hover{
+
+    background:#0d6efd;
+
+    color:white;
+
+    transform:translateY(-10px);
+
+}
+
+.category-grid i{
+
+    display:block;
+
+    font-size:40px;
+
+    margin-bottom:18px;
+
+}
+
+/* ===========================
+HOW IT WORKS
+=========================== */
+
+.how-it-works{
+
+    background:#eef5ff;
+
+}
+
+.steps{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:35px;
+
+    margin-top:60px;
+
+}
+
+.step{
+
+    background:#fff;
+
+    text-align:center;
+
+    padding:45px 30px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.step:hover{
+
+    transform:translateY(-12px);
+
+}
+
+.step i{
+
+    width:90px;
+
+    height:90px;
+
+    line-height:90px;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+
+    color:white;
+
+    font-size:35px;
+
+    margin-bottom:25px;
+
+}
+
+.step h3{
+
+    margin-bottom:15px;
+
+    font-size:24px;
+
+    color:#222;
+
+}
+
+.step p{
+
+    color:#666;
+
+    font-size:16px;
+
+}
+
+/* ===========================
+SECTION SPACING
+=========================== */
+
+.statistics,
+.featured-jobs,
+.categories,
+.how-it-works{
+
+    padding:100px 8%;
+
+}
+
+/* ===========================
+CARD ANIMATION
+=========================== */
+
+.stat-card,
+.job-card,
+.category-grid a,
+.step{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===========================
+BUTTON TRANSITIONS
+=========================== */
+
+.view-job,
+.category-grid a,
+.step,
+.stat-card{
+
+    transition:all .35s ease;
+
+}
+
+/* ===========================================
+   HIRECONNECT HOME PAGE CSS
+   PART 3
+=========================================== */
+
+/* ===========================
+WHY CHOOSE US
+=========================== */
+
+.features{
+
+    background:#ffffff;
+
 }
 
 .feature-container{
-    display:flex;
-    justify-content:center;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
     gap:30px;
+
+    margin-top:60px;
+
 }
 
 .feature-box{
-    background:white;
-    padding:30px;
-    width:300px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:all .35s ease;
+
+}
+
+.feature-box:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
 }
 
 .feature-box i{
+
+    width:85px;
+
+    height:85px;
+
+    line-height:85px;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+
+    color:#fff;
+
     font-size:35px;
-    color:#2563eb;
-    margin-bottom:15px;
+
+    margin-bottom:25px;
+
 }
 
-/* Footer */
-footer{
-    background:#082f91;
+.feature-box h3{
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+    color:#222;
+
+}
+
+.feature-box p{
+
+    color:#666;
+
+    font-size:16px;
+
+}
+
+/* ===========================
+TRUSTED COMPANIES
+=========================== */
+
+.companies{
+
+    background:#f8f9fc;
+
+}
+
+.company-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:30px;
+
+    margin-top:60px;
+
+}
+
+.company-card{
+
+    background:#fff;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.company-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 35px rgba(0,0,0,.15);
+
+}
+
+.company-card i{
+
+    color:#0d6efd;
+
+    margin-bottom:20px;
+
+}
+
+.company-card h4{
+
+    font-size:22px;
+
+    color:#333;
+
+}
+
+/* ===========================
+TESTIMONIALS
+=========================== */
+
+.testimonials{
+
+    background:#eef5ff;
+
+}
+
+.testimonial-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:35px;
+
+    margin-top:60px;
+
+}
+
+.testimonial{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    padding:40px 30px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.testimonial:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.testimonial img{
+
+    width:100px;
+
+    height:100px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    margin:0 auto 20px;
+
+    border:5px solid #0d6efd;
+
+}
+
+.testimonial h3{
+
+    font-size:24px;
+
+    margin-bottom:5px;
+
+}
+
+.testimonial h5{
+
+    color:#0d6efd;
+
+    margin-bottom:20px;
+
+}
+
+.testimonial p{
+
+    color:#666;
+
+    margin-bottom:20px;
+
+    font-style:italic;
+
+    line-height:1.7;
+
+}
+
+.testimonial{
+
+    color:#ffc107;
+
+    font-size:18px;
+
+}
+
+/* ===========================
+NEWSLETTER
+=========================== */
+
+.newsletter{
+
+    background:linear-gradient(135deg,#0d6efd,#0047b3);
+
     color:white;
-    padding:50px;
+
+    text-align:center;
+
+}
+
+.newsletter h2{
+
+    color:white;
+
+}
+
+.newsletter p{
+
+    margin-bottom:35px;
+
+    font-size:18px;
+
+}
+
+.newsletter form{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.newsletter input{
+
+    width:400px;
+
+    max-width:90%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:16px;
+
+}
+
+.newsletter button{
+
+    padding:18px 35px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#ffc107;
+
+    color:#222;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.newsletter button:hover{
+
+    background:#ffca2c;
+
+}
+
+/* ===========================
+CALL TO ACTION
+=========================== */
+
+.cta{
+
+    background:#ffffff;
+
+    text-align:center;
+
+}
+
+.cta h2{
+
+    font-size:45px;
+
+    margin-bottom:20px;
+
+}
+
+.cta p{
+
+    max-width:700px;
+
+    margin:0 auto 35px;
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+.cta a{
+
+    display:inline-block;
+
+    padding:18px 40px;
+
+    background:#198754;
+
+    color:white;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.cta a:hover{
+
+    background:#157347;
+
+    transform:translateY(-5px);
+
+}
+
+/* ===========================
+GENERAL ANIMATION
+=========================== */
+
+.feature-box,
+.company-card,
+.testimonial{
+
+    animation:fadeUp .8s ease;
+
+}
+
+/* ===========================================
+   HIRECONNECT HOME PAGE CSS
+   PART 4
+=========================================== */
+
+/* ===========================
+FOOTER
+=========================== */
+
+footer{
+
+    background:#1d2636;
+
+    color:#ffffff;
+
+    padding:70px 8% 25px;
+
 }
 
 .footer-grid{
+
     display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:30px;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:40px;
+
+    margin-bottom:40px;
+
+}
+
+.footer-grid h3,
+.footer-grid h4{
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+
+.footer-grid p{
+
+    color:#d6d6d6;
+
+    line-height:1.8;
+
 }
 
 .footer-grid ul{
-    list-style:none;
+
+    padding:0;
+
 }
 
-.footer-grid li{
-    margin:10px 0;
+.footer-grid ul li{
+
+    margin-bottom:12px;
+
+}
+
+.footer-grid ul li a{
+
+    color:#d6d6d6;
+
+    transition:.3s;
+
+}
+
+.footer-grid ul li a:hover{
+
+    color:#0d6efd;
+
+    padding-left:6px;
+
+}
+
+.socials{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
 }
 
 .socials i{
-    margin-right:15px;
-    margin-top:15px;
+
+    width:45px;
+
+    height:45px;
+
+    line-height:45px;
+
+    text-align:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.socials i:hover{
+
+    background:#0d6efd;
+
+    transform:translateY(-6px);
+
+}
+
+footer hr{
+
+    border:0;
+
+    height:1px;
+
+    background:#3d4655;
+
+    margin:30px 0;
+
 }
 
 .copyright{
+
     text-align:center;
-    margin-top:30px;
-    border-top:1px solid rgba(255,255,255,.2);
-    padding-top:20px;
+
+    color:#bdbdbd;
+
+    font-size:15px;
+
 }
 
-/* Responsive */
+/* ===========================
+BACK TO TOP BUTTON
+=========================== */
+
+#topBtn{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    display:none;
+
+    z-index:999;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    transition:.35s;
+
+}
+
+#topBtn:hover{
+
+    background:#0056d2;
+
+    transform:translateY(-6px);
+
+}
+
+/* ===========================
+CUSTOM SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f1f1f1;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#0d6efd;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#0056d2;
+
+}
+
+/* ===========================
+UTILITY CLASSES
+=========================== */
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.mt-1{margin-top:10px;}
+.mt-2{margin-top:20px;}
+.mt-3{margin-top:30px;}
+.mt-4{margin-top:40px;}
+.mt-5{margin-top:50px;}
+
+.mb-1{margin-bottom:10px;}
+.mb-2{margin-bottom:20px;}
+.mb-3{margin-bottom:30px;}
+.mb-4{margin-bottom:40px;}
+.mb-5{margin-bottom:50px;}
+
+.container{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+}
+
+/* ===========================
+FADE-IN ANIMATION
+=========================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+.fade-in{
+
+    animation:fadeIn 1s ease;
+
+}
+
+/* ===========================
+RESPONSIVE DESIGN
+=========================== */
+
+/* Laptop */
+
+@media(max-width:1200px){
+
+.hero{
+
+    gap:40px;
+
+}
+
+.hero-text h1{
+
+    font-size:52px;
+
+}
+
+}
+
+/* Tablet */
+
+@media(max-width:992px){
+
+header{
+
+    padding:18px 5%;
+
+    flex-wrap:wrap;
+
+    height:auto;
+
+}
+
+nav{
+
+    width:100%;
+
+    margin-top:15px;
+
+}
+
+nav ul{
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.hero{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    padding-top:140px;
+
+}
+
+.hero-text,
+.hero-image{
+
+    width:100%;
+
+}
+
+.hero-buttons{
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+.floating-card{
+
+    display:none;
+
+}
+
+.stats-container,
+.job-grid,
+.category-grid,
+.steps,
+.feature-container,
+.company-grid,
+.testimonial-container,
+.footer-grid{
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+}
+
+}
+
+/* Mobile */
+
 @media(max-width:768px){
 
-    header{
-        flex-direction:column;
-        gap:15px;
-    }
+.logo a{
 
-    nav ul{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
+    font-size:26px;
 
-    .hero{
-        flex-direction:column;
-        text-align:center;
-    }
+}
 
-    .hero-text{
-        width:100%;
-    }
+.hero{
 
-    .hero-image img{
-        width:100%;
-        margin-top:30px;
-    }
+    padding:130px 6% 80px;
 
-    .feature-container{
-        flex-direction:column;
-        align-items:center;
-    }
+}
 
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
+.hero-text h1{
+
+    font-size:42px;
+
+}
+
+.hero-text p{
+
+    font-size:16px;
+
+}
+
+section{
+
+    padding:70px 6%;
+
+}
+
+section h2{
+
+    font-size:32px;
+
+}
+
+.stat-card h2{
+
+    font-size:32px;
+
+}
+
+.job-card h3{
+
+    font-size:20px;
+
+}
+
+.newsletter form{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.newsletter input{
+
+    width:100%;
+
+}
+
+.newsletter button{
+
+    width:100%;
+
+}
+
+.footer-grid{
+
+    text-align:center;
+
+}
+
+.socials{
+
+    justify-content:center;
+
+}
+
+#topBtn{
+
+    right:15px;
+
+    bottom:15px;
+
+}
+
+}
+
+/* Small Phones */
+
+@media(max-width:480px){
+
+.hero-text h1{
+
+    font-size:34px;
+
+}
+
+.badge{
+
+    font-size:13px;
+
+    padding:10px 18px;
+
+}
+
+.browse,
+.started{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+.auth-buttons{
+
+    flex-direction:column;
+
+    width:100%;
+
+    margin-top:15px;
+
+}
+
+.login,
+.register,
+.dashboard-btn,
+.logout-btn{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
 }

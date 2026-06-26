@@ -1,0 +1,421 @@
+/* =====================================
+   HireConnect FAQ Page
+===================================== */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f4f7fc;
+
+    color:#333;
+
+    line-height:1.6;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+ul{
+
+    list-style:none;
+
+}
+
+/* ===========================
+HEADER
+=========================== */
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:#fff;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+.logo a{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#0d6efd;
+
+}
+
+nav ul{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+nav ul li a{
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+nav ul li a:hover,
+nav ul li a.active{
+
+    color:#0d6efd;
+
+}
+
+.auth-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.login,
+.register{
+
+    padding:10px 22px;
+
+    border-radius:8px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.login{
+
+    border:2px solid #0d6efd;
+
+    color:#0d6efd;
+
+}
+
+.login:hover{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+.register{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+.register:hover{
+
+    background:#0056d2;
+
+}
+
+/* ===========================
+FAQ SECTION
+=========================== */
+
+.faq{
+
+    padding:80px 8%;
+
+}
+
+.faq-container{
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+.faq h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+    color:#222;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:50px;
+
+    font-size:18px;
+
+}
+
+/* ===========================
+FAQ ITEM
+=========================== */
+
+.faq-item{
+
+    background:#fff;
+
+    margin-bottom:20px;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.faq-btn{
+
+    width:100%;
+
+    padding:22px;
+
+    border:none;
+
+    background:#fff;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#222;
+
+    transition:.3s;
+
+}
+
+.faq-btn:hover{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+.faq-btn i{
+
+    transition:.3s;
+
+}
+
+/* ===========================
+FAQ CONTENT
+=========================== */
+
+.faq-content{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    background:#f8f9fc;
+
+    transition:max-height .4s ease;
+
+}
+
+.faq-content p{
+
+    padding:20px;
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+/* Active State */
+
+.faq-item.active .faq-content{
+
+    max-height:250px;
+
+}
+
+.faq-item.active .faq-btn{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+.faq-item.active .faq-btn i{
+
+    transform:rotate(45deg);
+
+}
+
+/* ===========================
+FOOTER
+=========================== */
+
+footer{
+
+    background:#1d2636;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:25px;
+
+    margin-top:60px;
+
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+header{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+nav ul{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.faq{
+
+    padding:60px 5%;
+
+}
+
+.faq h2{
+
+    font-size:34px;
+
+}
+
+.subtitle{
+
+    font-size:16px;
+
+}
+
+.faq-btn{
+
+    font-size:16px;
+
+    padding:18px;
+
+}
+
+.auth-buttons{
+
+    flex-direction:column;
+
+    width:100%;
+
+}
+
+.login,
+.register{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.logo a{
+
+    font-size:24px;
+
+}
+
+nav ul{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.faq h2{
+
+    font-size:28px;
+
+}
+
+.subtitle{
+
+    font-size:15px;
+
+}
+
+}
