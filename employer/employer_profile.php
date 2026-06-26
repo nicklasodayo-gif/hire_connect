@@ -15,8 +15,8 @@ $message = "";
 $query = mysqli_query(
     $conn,
     "SELECT *
-     FROM employers
-     WHERE employer_id = '$employer_id'"
+    FROM employers
+    WHERE employer_id = '$employer_id'"
 );
 
 $employer = mysqli_fetch_assoc($query);
@@ -99,8 +99,8 @@ if(isset($_POST['update_profile'])){
         $query = mysqli_query(
             $conn,
             "SELECT *
-             FROM employers
-             WHERE employer_id='$employer_id'"
+            FROM employers
+            WHERE employer_id='$employer_id'"
         );
 
         $employer = mysqli_fetch_assoc($query);
@@ -122,12 +122,12 @@ if(isset($_POST['update_profile'])){
 
 <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    content="width=device-width, initial-scale=1.0">
 
 <title>Company Profile | HireConnect</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet">
+    rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -165,7 +165,7 @@ href="assets/css/employer.css">
                     <?= $message ?>
 
                     <form method="POST"
-                          enctype="multipart/form-data">
+                        enctype="multipart/form-data">
 
                         <div class="row">
 
@@ -185,7 +185,7 @@ href="assets/css/employer.css">
                                     <div class="p-4 border rounded">
 
                                         <i class="bi bi-building"
-                                           style="font-size:60px;"></i>
+                                        style="font-size:60px;"></i>
 
                                         <p class="mt-2">
                                             No Company Logo

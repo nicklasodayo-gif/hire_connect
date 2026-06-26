@@ -55,7 +55,8 @@ if (isset($_POST['submit'])) {
 
             if ($stmt->execute()) {
 
-                $message = "Registration successful! You can now login.";
+                header("Location: index.php");
+                exit();
 
             } else {
 
@@ -170,12 +171,13 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
 
-                <label>Password</label>
+                    <label>Password</label>
 
-                <input
-                    type="password"
-                    name="password"
-                    required>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required>
 
             </div>
 
@@ -183,12 +185,21 @@ if (isset($_POST['submit'])) {
 
                 <label>Confirm Password</label>
 
-                <input
-                    type="password"
-                    name="confirm_password"
-                    required>
-
+            <input
+                type="password"
+                id="confirm_password"
+                name="confirm_password"
+                required>
             </div>
+
+    <div class="form-group">
+        <label>
+            <input
+                type="checkbox"
+                id="showPassword">
+            Show Password
+        </label>
+    </div>
 
             <div class="form-group">
 
@@ -252,6 +263,29 @@ if (isset($_POST['submit'])) {
     </div>
 
 </footer>
+
+<script>
+
+        document.getElementById("showPassword").addEventListener("change", function () {
+
+        let password = document.getElementById("password");
+        let confirmPassword = document.getElementById("confirm_password");
+
+        if (this.checked) {
+
+        password.type = "text";
+        confirmPassword.type = "text";
+
+    } else {
+
+        password.type = "password";
+        confirmPassword.type = "password";
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>

@@ -11,7 +11,7 @@ include("connect.php");
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0">
 
     <title>HireConnect | Find Your Dream Job</title>
 
@@ -1043,9 +1043,9 @@ Employers
 
 <li><a href="register.php">Register Company</a></li>
 
-<li><a href="employer/post_job.php">Post a Job</a></li>
+<li><a href="employer\post_job.php">Post a Job</a></li>
 
-<li><a href="employer/dashboard.php">Employer Dashboard</a></li>
+<li><a href="employer\employer_dashboard.php">Employer Dashboard</a></li>
 
 <li><a href="contact.php">Support</a></li>
 

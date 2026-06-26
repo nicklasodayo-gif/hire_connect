@@ -1,0 +1,59 @@
+/* =========================
+   DASHBOARD FOOTER (MODERN SAAS STYLE)
+========================= */
+
+.dashboard-footer {
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    padding: 18px 25px;
+    margin-top: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 14px;
+    color: #6b7280;
+
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+}
+
+/* left text */
+.dashboard-footer p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* footer links */
+.footer-links {
+    display: flex;
+    gap: 18px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 500;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+/* hover animation underline */
+.footer-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background: #2563eb;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #2563eb;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}

@@ -1,6 +1,5 @@
 <?php
 include "includes/auth.php";
-include "../connect.php";
 
 $employer_id = $_SESSION['user_id'];
 
@@ -14,8 +13,8 @@ $total_jobs = mysqli_num_rows(
     mysqli_query(
         $conn,
         "SELECT job_id
-         FROM jobs
-         WHERE employer_id='$employer_id'"
+        FROM jobs
+        WHERE employer_id='$employer_id'"
     )
 );
 
@@ -23,9 +22,9 @@ $open_jobs = mysqli_num_rows(
     mysqli_query(
         $conn,
         "SELECT job_id
-         FROM jobs
-         WHERE employer_id='$employer_id'
-         AND status='Open'"
+        FROM jobs
+        WHERE employer_id='$employer_id'
+        AND status='Open'"
     )
 );
 
@@ -34,12 +33,12 @@ $total_applicants = mysqli_num_rows(
         $conn,
         "SELECT a.application_id
 
-         FROM applications a
+        FROM applications a
 
-         INNER JOIN jobs j
-         ON a.job_id = j.job_id
+        INNER JOIN jobs j
+        ON a.job_id = j.job_id
 
-         WHERE j.employer_id='$employer_id'"
+        WHERE j.employer_id='$employer_id'"
     )
 );
 
@@ -48,13 +47,13 @@ $shortlisted = mysqli_num_rows(
         $conn,
         "SELECT a.application_id
 
-         FROM applications a
+        FROM applications a
 
-         INNER JOIN jobs j
-         ON a.job_id=j.job_id
+        INNER JOIN jobs j
+        ON a.job_id=j.job_id
 
-         WHERE j.employer_id='$employer_id'
-         AND a.status='Shortlisted'"
+        WHERE j.employer_id='$employer_id'
+        AND a.status='Shortlisted'"
     )
 );
 
@@ -67,10 +66,10 @@ $shortlisted = mysqli_num_rows(
 $recent_jobs = mysqli_query(
     $conn,
     "SELECT *
-     FROM jobs
-     WHERE employer_id='$employer_id'
-     ORDER BY created_at DESC
-     LIMIT 5"
+    FROM jobs
+    WHERE employer_id='$employer_id'
+    ORDER BY created_at DESC
+    LIMIT 5"
 );
 
 /*
@@ -79,32 +78,29 @@ $recent_jobs = mysqli_query(
 |--------------------------------------------------------------------------
 */
 
+// 1. Recent applications
 $recent_applications = mysqli_query(
     $conn,
     "SELECT
-
         a.application_id,
         a.status,
         a.applied_at,
-
-        u.fullname,
-
+        u.full_name,
         j.title
-
-     FROM applications a
-
-     INNER JOIN users u
-     ON a.applicant_id=u.user_id
-
-     INNER JOIN jobs j
-     ON a.job_id=j.job_id
-
-     WHERE j.employer_id='$employer_id'
-
-     ORDER BY a.applied_at DESC
-
-     LIMIT 5"
+    FROM applications a
+    INNER JOIN users u ON a.applicant_id = u.user_id
+    INNER JOIN jobs j ON a.job_id = j.job_id
+    ORDER BY a.applied_at DESC
+    LIMIT 5"
 );
+
+// 2. Employer jobs (prepared statement)
+$sql = "SELECT * FROM jobs j WHERE j.employer_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $employer_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -114,18 +110,18 @@ $recent_applications = mysqli_query(
 
 <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    content="width=device-width, initial-scale=1.0">
 
 <title>Employer Dashboard | HireConnect</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet">
+    rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <link rel="stylesheet"
-href="assets/css/employer.css">
+href="employer\assets\dashboard.css">
 
 </head>
 
@@ -296,7 +292,7 @@ href="assets/css/employer.css">
                 <div class="card-body">
 
                     <a href="post_job.php"
-                       class="btn btn-primary me-2">
+                    class="btn btn-primary me-2">
 
                         <i class="bi bi-plus-circle"></i>
                         Post Job
@@ -304,7 +300,7 @@ href="assets/css/employer.css">
                     </a>
 
                     <a href="manage_jobs.php"
-                       class="btn btn-success me-2">
+                    class="btn btn-success me-2">
 
                         <i class="bi bi-briefcase"></i>
                         Manage Jobs
@@ -312,7 +308,7 @@ href="assets/css/employer.css">
                     </a>
 
                     <a href="view_applicants.php"
-                       class="btn btn-warning text-white">
+                    class="btn btn-warning text-white">
 
                         <i class="bi bi-people"></i>
                         Applicants

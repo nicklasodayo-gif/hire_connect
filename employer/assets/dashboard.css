@@ -1,0 +1,318 @@
+/* =========================
+   GENERAL LAYOUT
+========================= */
+
+body {
+    background: #f5f7fb;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content area (works with sidebar) */
+.main-content {
+    margin-left: 250px; /* adjust if your sidebar width differs */
+    padding: 20px;
+}
+
+/* Page container */
+.page-content {
+    padding: 10px 0;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+h2 {
+    font-weight: 700;
+    color: #1e1e2f;
+}
+
+h5 {
+    font-weight: 600;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+}
+
+.card-header {
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+}
+
+/* Statistic icons */
+.card i {
+    opacity: 0.85;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead {
+    background: #f0f2f5;
+}
+
+.table th {
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #e6e6e6;
+}
+
+.table td {
+    vertical-align: middle;
+    color: #444;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fafafa;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #eef3ff;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.badge {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.card-body .btn {
+    margin-bottom: 8px;
+}
+
+/* =========================
+   SIDEBAR SUPPORT (optional)
+   adjust based on your sidebar
+========================= */
+
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* =========================
+   DASHBOARD STATISTICS ICONS
+========================= */
+
+.fs-1 {
+    font-size: 2.2rem !important;
+}
+
+/* =========================
+   RESPONSIVE TABLE
+========================= */
+
+.table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* =========================
+   FOOTER SPACING
+========================= */
+
+footer {
+    margin-top: 30px;
+    color: #777;
+    font-size: 14px;
+}
+
+/* ===== SaaS STYLE BASE ===== */
+
+body {
+    background: #f4f6fb;
+    color: #1f2937;
+}
+
+/* smoother cards */
+.card {
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+/* softer hover */
+.card:hover {
+    transform: translateY(-4px);
+    transition: 0.25s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+}
+
+/* modern table */
+.table thead {
+    background: #f9fafb;
+}
+
+.table th {
+    font-weight: 600;
+    color: #374151;
+}
+
+.table td {
+    color: #4b5563;
+}
+
+/* buttons modern look */
+.btn {
+    border-radius: 10px;
+    padding: 8px 14px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        left: -250px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* ===== TOPBAR ===== */
+
+.topbar {
+    height: 65px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #eee;
+}
+
+/* left side */
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* brand */
+.brand {
+    font-weight: 700;
+    font-size: 18px;
+    color: #1f2937;
+}
+
+/* right side */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* search box */
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding: 7px 30px 7px 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.search-box i {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    color: #888;
+}
+
+/* profile image */
+.profile img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* icon buttons */
+.icon-btn {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* hover */
+.icon-btn:hover {
+    opacity: 0.7;
+}
+
+/* ===== FOOTER ===== */
+
+.footer {
+    margin-top: 40px;
+    padding: 15px 20px;
+    background: #ffffff;
+    border-top: 1px solid #eee;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* links */
+.footer-links a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #6b7280;
+}
+
+.footer-links a:hover {
+    color: #2563eb;
+}
