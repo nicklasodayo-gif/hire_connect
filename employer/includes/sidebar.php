@@ -2,63 +2,90 @@
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
+<link rel="stylesheet" href="includes/sidebar.css">
+
 <div class="sidebar">
 
-    <div class="sidebar-header">
-        <h3>Employer Panel</h3>
+    <div class="logo">
+        <i class="bi bi-briefcase-fill"></i>
+        <span>HireConnect</span>
     </div>
 
-    <a class="<?= $current_page == 'employer\employer_dashboard.php' ? 'active' : '' ?>"
-       href="employer\employer_dashboard.php">
-        <i class="bi bi-speedometer2"></i>
-        Dashboard
-    </a>
+    <ul>
 
-    <a class="<?= $current_page == 'employer\post_job.php' ? 'active' : '' ?>"
-       href="employer\post_job.php">
-        <i class="bi bi-plus-circle"></i>
-        Post Job
-    </a>
+        <li>
+            <a href="employer_dashboard.php"
+            class="<?= ($current_page=="employer_dashboard.php")?'active':'';?>">
+                <i class="bi bi-speedometer2"></i>
+                Dashboard
+            </a>
+        </li>
 
-    <a class="<?= $current_page == 'employer\manage_job.php' ? 'active' : '' ?>"
-       href="employer\manage_job.php">
-        <i class="bi bi-briefcase"></i>
-        Manage Jobs
-    </a>
+        <li>
+            <a href="post_job.php"
+            class="<?= ($current_page=="post_job.php")?'active':'';?>">
+                <i class="bi bi-plus-circle"></i>
+                Post Job
+            </a>
+        </li>
 
-    <a class="<?= $current_page == 'employer\view_applicants.php' ? 'active' : '' ?>"
-       href="employer\view_applicants.php">
-        <i class="bi bi-people"></i>
-        Applicants
-    </a>
+        <li>
+            <a href="manage_job.php"
+            class="<?= ($current_page=="manage_jobs.php")?'active':'';?>">
+                <i class="bi bi-briefcase"></i>
+                Manage Jobs
+            </a>
+        </li>
 
-    <a class="<?= $current_page == 'employer\schedule_interviews.php' ? 'active' : '' ?>"
-       href="employer\schedule_interviews.php">
-        <i class="bi bi-calendar-event"></i>
-        Interviews
-    </a>
+        <li>
+            <a href="view_applicants.php"
+            class="<?= ($current_page=="view_applicants.php")?'active':'';?>">
+                <i class="bi bi-people"></i>
+                Applicants
+            </a>
+        </li>
 
-    <a class="<?= $current_page == '#' ? 'active' : '' ?>"
-       href="#">
-        <i class="bi bi-bar-chart"></i>
-        Reports
-    </a>
+        <li>
+            <a href="schedule_interviews.php"
+            class="<?= ($current_page=="schedule_interviews.php")?'active':'';?>">
+                <i class="bi bi-calendar-event"></i>
+                Interviews
+            </a>
+        </li>
 
-    <a class="<?= $current_page == 'employer\employer_profile.php' ? 'active' : '' ?>"
-       href="employer\employer_profile.php">
-        <i class="bi bi-building"></i>
-        Company Profile
-    </a>
+        <li>
+            <a href="employer_reports.php"
+            class="<?= ($current_page=="reports.php")?'active':'';?>">
+                <i class="bi bi-bar-chart"></i>
+                Reports
+            </a>
+        </li>
 
-    <a class="<?= $current_page == 'employer\employer_settings.php' ? 'active' : '' ?>"
-       href="employer\employer_settings.php">
-        <i class="bi bi-gear"></i>
-        Settings
-    </a>
+        <li>
+            <a href="employer_profile.php"
+            class="<?= ($current_page=="employer_profile.php")?'active':'';?>">
+                <i class="bi bi-building"></i>
+                Company Profile
+            </a>
+        </li>
 
-    <a href="../logout.php">
-        <i class="bi bi-box-arrow-right"></i>
-        Logout
-    </a>
+        <li>
+            <a href="employer_settings.php"
+            class="<?= ($current_page=="employer_settings.php")?'active':'';?>">
+                <i class="bi bi-gear"></i>
+                Settings
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+
+        <a href="../logout.php">
+            <i class="bi bi-box-arrow-right"></i>
+            Logout
+        </a>
+
+    </div>
 
 </div>

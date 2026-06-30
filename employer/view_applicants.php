@@ -490,7 +490,7 @@ value="<?= $row['application_id']; ?>">
 
 <strong>
 
-<?= htmlspecialchars($row['fullname']); ?>
+<?= htmlspecialchars($row['full_name']); ?>
 
 </strong>
 

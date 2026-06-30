@@ -445,7 +445,7 @@ href="employer\assets\dashboard.css">
 
                 <div class="card-body">
 
-                    <a href="post_job.php"
+                    <a href="employer\post_job.php"
                     class="btn btn-primary me-2">
 
                         <i class="bi bi-plus-circle"></i>
@@ -453,7 +453,7 @@ href="employer\assets\dashboard.css">
 
                     </a>
 
-                    <a href="manage_jobs.php"
+                    <a href="admin\manage_job.php"
                     class="btn btn-success me-2">
 
                         <i class="bi bi-briefcase"></i>

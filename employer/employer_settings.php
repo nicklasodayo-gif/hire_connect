@@ -3,68 +3,82 @@ require_once "../includes/employer_auth.php";
 require_once "../config/config.php";
 
 $employer_id = $_SESSION['user_id'];
-
 $message = "";
 
 /*
 |--------------------------------------------------------------------------
-| GET EMPLOYER DATA
+| GET USER + EMPLOYER DATA
 |--------------------------------------------------------------------------
 */
 
-$query = mysqli_query(
-    $conn,
-    "SELECT *
-     FROM employers
-     WHERE employer_id='$employer_id'"
-);
+$sql = "
+SELECT
+users.email,
+users.password,
+employers.notifications
+FROM users
+LEFT JOIN employers
+ON users.user_id = employers.employer_id
+WHERE users.user_id = ?
+";
 
-$employer = mysqli_fetch_assoc($query);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i",$employer_id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$employer = $result->fetch_assoc();
+
 
 /*
 |--------------------------------------------------------------------------
-| UPDATE EMAIL & NOTIFICATIONS
+| SAVE SETTINGS
 |--------------------------------------------------------------------------
 */
 
 if(isset($_POST['save_settings'])){
 
-    $email = mysqli_real_escape_string(
-        $conn,
-        trim($_POST['email'])
+    $email = trim($_POST['email']);
+    $notifications = $_POST['notifications'];
+
+    // Update email
+    $stmt = $conn->prepare("
+        UPDATE users
+        SET email=?
+        WHERE user_id=?
+    ");
+
+    $stmt->bind_param(
+        "si",
+        $email,
+        $employer_id
     );
 
-    $notifications = mysqli_real_escape_string(
-        $conn,
-        $_POST['notifications']
+    $stmt->execute();
+
+
+    // Update notifications
+    $stmt = $conn->prepare("
+        UPDATE employers
+        SET notifications=?
+        WHERE employer_id=?
+    ");
+
+    $stmt->bind_param(
+        "si",
+        $notifications,
+        $employer_id
     );
 
-    $update = mysqli_query(
-        $conn,
-        "UPDATE employers
-         SET
-         email='$email',
-         notifications='$notifications'
-         WHERE employer_id='$employer_id'"
-    );
+    $stmt->execute();
 
-    if($update){
+    $message = "
+    <div class='alert alert-success'>
+        Settings updated successfully.
+    </div>";
 
-        $message = "
-        <div class='alert alert-success'>
-            Settings updated successfully.
-        </div>";
-
-        $query = mysqli_query(
-            $conn,
-            "SELECT *
-             FROM employers
-             WHERE employer_id='$employer_id'"
-        );
-
-        $employer = mysqli_fetch_assoc($query);
-    }
 }
+
 
 /*
 |--------------------------------------------------------------------------
@@ -74,47 +88,66 @@ if(isset($_POST['save_settings'])){
 
 if(isset($_POST['change_password'])){
 
-    $current_password = $_POST['current_password'];
-    $new_password = $_POST['new_password'];
-    $confirm_password = $_POST['confirm_password'];
+    $current = $_POST['current_password'];
+    $new = $_POST['new_password'];
+    $confirm = $_POST['confirm_password'];
 
-    if(!password_verify(
-        $current_password,
-        $employer['password']
-    )){
+    if(!password_verify($current,$employer['password'])){
 
         $message = "
         <div class='alert alert-danger'>
             Current password is incorrect.
         </div>";
 
-    }elseif($new_password !== $confirm_password){
+    }elseif($new != $confirm){
 
         $message = "
         <div class='alert alert-danger'>
-            New passwords do not match.
+            Passwords do not match.
         </div>";
 
     }else{
 
-        $hashed_password = password_hash(
-            $new_password,
+        $hashed = password_hash(
+            $new,
             PASSWORD_DEFAULT
         );
 
-        mysqli_query(
-            $conn,
-            "UPDATE employers
-             SET password='$hashed_password'
-             WHERE employer_id='$employer_id'"
+        $stmt = $conn->prepare("
+            UPDATE users
+            SET password=?
+            WHERE user_id=?
+        ");
+
+        $stmt->bind_param(
+            "si",
+            $hashed,
+            $employer_id
         );
+
+        $stmt->execute();
 
         $message = "
         <div class='alert alert-success'>
             Password changed successfully.
         </div>";
     }
+
 }
+
+
+/*
+|--------------------------------------------------------------------------
+| REFRESH DATA
+|--------------------------------------------------------------------------
+*/
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i",$employer_id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$employer = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>

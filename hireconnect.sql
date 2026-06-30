@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2026 at 07:44 AM
+-- Generation Time: Jun 30, 2026 at 02:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -90,6 +90,7 @@ CREATE TABLE `contact_messages` (
 
 CREATE TABLE `employers` (
   `employer_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `company_name` varchar(255) NOT NULL,
   `logo` varchar(255) DEFAULT NULL,
   `website` varchar(255) DEFAULT NULL,
@@ -244,14 +245,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `full_name`, `email`, `phone`, `password`, `role`, `created_at`, `profile_photo`) VALUES
-(1, 'Nicklas Odayo', 'nicklasodayo@gmail.com', 'nicklasodayo@gmail.com', '$2y$10$5LbF7.xmKQZhh1KzKVSS4OmeyRhedpCu1P6oaDlxD97jzshjlHJ6G', 'jobseeker', '2026-06-26 05:29:17', 'default.png'),
-(2, 'john', 'john@gmail.com', '0112345678', '$2y$10$sxiXzKeZuHsD7tiPX/UCUOCVzedPAgd.R6mCVRs3VEpvuqvv3/QCa', 'employer', '2026-06-29 23:24:12', 'default.png');
-
---
 -- Indexes for dumped tables
 --
 
@@ -287,7 +280,8 @@ ALTER TABLE `contact_messages`
 -- Indexes for table `employers`
 --
 ALTER TABLE `employers`
-  ADD PRIMARY KEY (`employer_id`);
+  ADD PRIMARY KEY (`employer_id`),
+  ADD KEY `fk_employer_user` (`user_id`);
 
 --
 -- Indexes for table `interviews`
@@ -359,7 +353,7 @@ ALTER TABLE `activity_logs`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `application_history`
@@ -383,7 +377,7 @@ ALTER TABLE `interviews`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `jobseeker_settings`
@@ -401,7 +395,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `saved_jobs`
 --
 ALTER TABLE `saved_jobs`
-  MODIFY `saved_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `saved_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `site_settings`
@@ -413,7 +407,7 @@ ALTER TABLE `site_settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -442,7 +436,8 @@ ALTER TABLE `application_history`
 -- Constraints for table `employers`
 --
 ALTER TABLE `employers`
-  ADD CONSTRAINT `employers_ibfk_1` FOREIGN KEY (`employer_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `employers_ibfk_1` FOREIGN KEY (`employer_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_employer_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `interviews`
@@ -455,7 +450,7 @@ ALTER TABLE `interviews`
 -- Constraints for table `jobs`
 --
 ALTER TABLE `jobs`
-  ADD CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`employer_id`) REFERENCES `employers` (`employer_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`employer_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `jobseekers`

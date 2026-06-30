@@ -1,105 +1,138 @@
 <?php
-session_start();
-require_once "../includes/employer_auth.php";
-require_once "../config/config.php";
-
-if (!isset($_SESSION['employer_id'])) {
-    header("Location: login.php ");
-    exit();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+require_once "../config/config.php";
+require_once "../includes/employer_auth.php";
 
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $employer_id = $_SESSION['employer_id'];
+    $employer_id      = $_SESSION['user_id'];
 
-    $title = htmlspecialchars(trim($_POST['title']));
-    $category = htmlspecialchars(trim($_POST['category']));
-    $employment_type = htmlspecialchars(trim($_POST['employment_type']));
-    $location = htmlspecialchars(trim($_POST['location']));
-    $salary = htmlspecialchars(trim($_POST['salary']));
-    $deadline = $_POST['deadline'];
-    $description = $_POST['description'];
-    $requirements = $_POST['requirements'];
-    $status = $_POST['status'];
+    $title            = trim($_POST['title']);
+    $category         = trim($_POST['category']);
+    $employment_type  = trim($_POST['employment_type']);
+    $location         = trim($_POST['location']);
+    $salary           = trim($_POST['salary']);
+    $deadline         = $_POST['deadline'];
+    $description      = $_POST['description'];
+    $requirements     = $_POST['requirements'];
+    $status           = $_POST['status'];
 
-    $logo = "";
+    if (
+        empty($title) ||
+        empty($category) ||
+        empty($employment_type) ||
+        empty($deadline) ||
+        empty($description)
+    ) {
 
-    if (!empty($_FILES['logo']['name'])) {
+        $message = "<div class='alert alert-danger'>
+                        Please fill all required fields.
+                    </div>";
 
-        $allowed = ['jpg','jpeg','png','webp'];
+    } else {
 
-        $extension = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
+        $logo = "";
 
-        if (in_array($extension, $allowed)) {
+        if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
 
-            $logo = uniqid().".".$extension;
+            $allowed = ['jpg','jpeg','png','webp'];
 
-            move_uploaded_file(
-                $_FILES['logo']['tmp_name'],
-                "../uploads/company_logos/".$logo
+            $ext = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
+
+            if (in_array($ext,$allowed)) {
+
+                $upload_dir = "../uploads/company_logos/";
+
+                if(!is_dir($upload_dir)){
+                    mkdir($upload_dir,0777,true);
+                }
+
+                $logo = uniqid().".".$ext;
+
+                move_uploaded_file(
+                    $_FILES['logo']['tmp_name'],
+                    $upload_dir.$logo
+                );
+
+            } else {
+
+                $message = "<div class='alert alert-danger'>
+                                Invalid logo format.
+                            </div>";
+
+            }
+
+        }
+
+        if(empty($message)){
+
+            $stmt = $conn->prepare("
+
+            INSERT INTO jobs
+            (
+                employer_id,
+                title,
+                category,
+                employment_type,
+                location,
+                salary,
+                deadline,
+                description,
+                requirements,
+                logo,
+                status
+            )
+
+            VALUES
+            (?,?,?,?,?,?,?,?,?,?,?)
+
+            ");
+
+            $stmt->bind_param(
+
+                "issssssssss",
+
+                $employer_id,
+                $title,
+                $category,
+                $employment_type,
+                $location,
+                $salary,
+                $deadline,
+                $description,
+                $requirements,
+                $logo,
+                $status
+
             );
 
-        } else {
+            if ($stmt->execute()) {
 
-            $message = "<div class='alert alert-danger'>
-                        Invalid image format.
-                        </div>";
-        }
-    }
+                $message = "
+                <div class='alert alert-success'>
+                    <i class='bi bi-check-circle-fill'></i>
+                    Job posted successfully.
+                </div>";
 
-    if(empty($message)){
+            } else {
 
-        $stmt = $conn->prepare("
+                $message = "
+                <div class='alert alert-danger'>
+                    Failed to post job.<br>
+                    Error: " . $stmt->error . "
+                </div>";
 
-        INSERT INTO jobs
-        (
-        employer_id,
-        title,
-        category,
-        employment_type,
-        location,
-        salary,
-        deadline,
-        description,
-        requirements,
-        logo,
-        status
-        )
+            }
 
-        VALUES
-        (?,?,?,?,?,?,?,?,?,?,?)
-
-        ");
-
-        $stmt->bind_param(
-            "issssssssss",
-            $employer_id,
-            $title,
-            $category,
-            $employment_type,
-            $location,
-            $salary,
-            $deadline,
-            $description,
-            $requirements,
-            $logo,
-            $status
-        );
-
-        if($stmt->execute()){
-
-            $message = "<div class='alert alert-success'>
-                        <i class='bi bi-check-circle'></i>
-                        Job posted successfully.
-                        </div>";
-
-        }else{
-
-            $message = "<div class='alert alert-danger'>
-                        ".$stmt->error."
-                        </div>";
+            $stmt->close();
 
         }
 
@@ -109,7 +142,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -126,13 +160,19 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.c
 <style>
 
 body{
-background:#eef2f7;
+background:#f4f6f9;
 }
 
 .sidebar{
 height:100vh;
 background:#1f2937;
 padding-top:20px;
+}
+
+.sidebar h3{
+color:white;
+text-align:center;
+margin-bottom:30px;
 }
 
 .sidebar a{
@@ -152,8 +192,10 @@ border-radius:15px;
 box-shadow:0 5px 20px rgba(0,0,0,.1);
 }
 
-img{
+#preview{
 border-radius:10px;
+display:none;
+margin-top:10px;
 }
 
 </style>
@@ -166,15 +208,11 @@ border-radius:10px;
 
 <div class="row">
 
-<!-- Sidebar -->
-
 <div class="col-md-2 sidebar">
 
-<h4 class="text-center text-white mb-4">
-HireConnect
-</h4>
+<h3>HireConnect</h3>
 
-<a href="dashboard.php">
+<a href="employer_dashboard.php">
 <i class="bi bi-speedometer2"></i>
 Dashboard
 </a>
@@ -189,9 +227,24 @@ Post Job
 Manage Jobs
 </a>
 
-<a href="applicants.php">
+<a href="view_applicants.php">
 <i class="bi bi-people"></i>
 Applicants
+</a>
+
+<a href="schedule_interviews.php">
+<i class="bi bi-calendar-event"></i>
+Interviews
+</a>
+
+<a href="employer_profile.php">
+<i class="bi bi-building"></i>
+Company Profile
+</a>
+
+<a href="employer_settings.php">
+<i class="bi bi-gear"></i>
+Settings
 </a>
 
 <a href="../logout.php">
@@ -200,8 +253,6 @@ Logout
 </a>
 
 </div>
-
-<!-- Main Content -->
 
 <div class="col-md-10">
 
@@ -212,11 +263,8 @@ Logout
 <div class="card-header bg-primary text-white">
 
 <h3>
-
 <i class="bi bi-briefcase-fill"></i>
-
-Create New Job
-
+Post New Job
 </h3>
 
 </div>
@@ -230,26 +278,13 @@ Create New Job
 <div class="row">
 
 <div class="col-md-6 mb-3">
-
 <label>Job Title</label>
-
-<input
-type="text"
-name="title"
-class="form-control"
-required>
-
+<input type="text" name="title" class="form-control" required>
 </div>
 
 <div class="col-md-6 mb-3">
-
 <label>Category</label>
-
-<select
-name="category"
-class="form-select"
-required>
-
+<select name="category" class="form-select" required>
 <option>Information Technology</option>
 <option>Engineering</option>
 <option>Finance</option>
@@ -258,126 +293,69 @@ required>
 <option>Healthcare</option>
 <option>Business</option>
 <option>Hospitality</option>
-
 </select>
-
 </div>
 
 <div class="col-md-6 mb-3">
-
 <label>Employment Type</label>
-
-<select
-name="employment_type"
-class="form-select">
-
+<select name="employment_type" class="form-select">
 <option>Full-Time</option>
 <option>Part-Time</option>
 <option>Internship</option>
 <option>Contract</option>
 <option>Remote</option>
-
 </select>
-
 </div>
 
 <div class="col-md-6 mb-3">
-
-<label>Job Location</label>
-
-<input
-type="text"
-name="location"
-class="form-control">
-
+<label>Location</label>
+<input type="text" name="location" class="form-control">
 </div>
 
 <div class="col-md-6 mb-3">
-
 <label>Salary</label>
-
-<input
-type="text"
-name="salary"
-class="form-control">
-
+<input type="text" name="salary" class="form-control">
 </div>
 
 <div class="col-md-6 mb-3">
-
-<label>Deadline</label>
-
-<input
-type="date"
-name="deadline"
-class="form-control"
-required>
-
+<label>Application Deadline</label>
+<input type="date" name="deadline" class="form-control" required>
 </div>
 
 <div class="col-md-6 mb-3">
-
 <label>Status</label>
-
-<select
-name="status"
-class="form-select">
-
+<select name="status" class="form-select">
 <option>Open</option>
 <option>Closed</option>
-
 </select>
-
 </div>
 
 <div class="col-md-6 mb-3">
-
 <label>Company Logo</label>
-
-<input
-type="file"
+<input type="file"
 name="logo"
 id="logo"
+accept=".jpg,.jpeg,.png,.webp"
 class="form-control">
 
-<br>
-
-<img
-id="preview"
-width="120"
-style="display:none;">
-
+<img id="preview" width="120">
 </div>
 
 <div class="col-12 mb-3">
-
 <label>Description</label>
-
-<textarea
-id="description"
-name="description"></textarea>
-
+<textarea id="description" name="description"></textarea>
 </div>
 
 <div class="col-12 mb-3">
-
 <label>Requirements</label>
-
-<textarea
-id="requirements"
-name="requirements"></textarea>
-
+<textarea id="requirements" name="requirements"></textarea>
 </div>
 
 <div class="col-12">
 
-<button
-class="btn btn-primary btn-lg">
-
+<button type="submit" class="btn btn-primary btn-lg">
 <i class="bi bi-send-fill"></i>
-
 Publish Job
-
 </button>
 
 </div>
@@ -400,27 +378,27 @@ Publish Job
 
 <script>
 
-ClassicEditor
-.create(document.querySelector('#description'));
+ClassicEditor.create(document.querySelector("#description"));
+ClassicEditor.create(document.querySelector("#requirements"));
 
-ClassicEditor
-.create(document.querySelector('#requirements'));
+const logo=document.getElementById("logo");
+const preview=document.getElementById("preview");
 
-logo.onchange = evt=>{
+logo.addEventListener("change",function(){
 
-const[file]=logo.files;
+const file=this.files[0];
 
 if(file){
 
 preview.src=URL.createObjectURL(file);
-
 preview.style.display="block";
 
 }
 
-}
+});
 
 </script>
 
 </body>
+
 </html>
