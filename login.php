@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['name'] = $user['full_name'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['logged_in'] = true;
 
             // REMEMBER ME (FIXED)
             if (isset($_POST['remember'])) {

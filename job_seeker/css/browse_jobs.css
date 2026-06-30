@@ -1,0 +1,354 @@
+/* =====================================================
+   BROWSE JOBS PAGE
+===================================================== */
+
+body{
+    background:#f5f7fb;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+/* =====================================================
+PAGE HEADER
+===================================================== */
+
+.page-title h2{
+    font-weight:700;
+    color:#1f2937;
+}
+
+.page-title p{
+    color:#6c757d;
+}
+
+/* =====================================================
+STATISTICS CARDS
+===================================================== */
+
+.stats-card{
+    border:none;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.stats-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.stats-card .card-body{
+    padding:25px;
+}
+
+.stats-card i{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.stats-card h3{
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.stats-card p{
+    color:#6c757d;
+    margin:0;
+}
+
+/* =====================================================
+SEARCH CARD
+===================================================== */
+
+.search-card{
+    border:none;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.search-card .card-header{
+    padding:18px 25px;
+    font-size:18px;
+    font-weight:600;
+}
+
+.search-card .card-body{
+    padding:25px;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    min-height:48px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    box-shadow:0 0 0 .2rem rgba(13,110,253,.15);
+}
+
+/* =====================================================
+JOB CARD
+===================================================== */
+
+.job-card{
+    border:none;
+    border-radius:16px;
+    overflow:hidden;
+    transition:.35s;
+    background:#fff;
+}
+
+.job-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.job-card img{
+
+    height:180px;
+
+    object-fit:contain;
+
+    background:#fafafa;
+
+    padding:20px;
+
+}
+
+.job-card .card-body{
+
+    padding:22px;
+
+}
+
+.job-card h5{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#222;
+
+}
+
+.job-card p{
+
+    margin-bottom:10px;
+
+    color:#555;
+
+}
+
+.job-card i{
+
+    width:22px;
+
+}
+
+/* =====================================================
+BADGES
+===================================================== */
+
+.badge{
+
+    font-size:12px;
+
+    padding:8px 12px;
+
+    border-radius:30px;
+
+}
+
+/* =====================================================
+BUTTONS
+===================================================== */
+
+.job-card .btn{
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.job-card .btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.job-card .card-footer{
+
+    background:#fff;
+
+    border-top:1px solid #eee;
+
+}
+
+/* =====================================================
+EMPTY STATE
+===================================================== */
+
+.empty-state{
+
+    padding:70px 20px;
+
+    text-align:center;
+
+}
+
+.empty-state i{
+
+    font-size:70px;
+
+    color:#adb5bd;
+
+}
+
+.empty-state h3{
+
+    margin-top:20px;
+
+    font-weight:700;
+
+}
+
+.empty-state p{
+
+    color:#777;
+
+}
+
+/* =====================================================
+PAGINATION
+===================================================== */
+
+.pagination .page-link{
+
+    border:none;
+
+    margin:0 4px;
+
+    border-radius:8px;
+
+    color:#0d6efd;
+
+    padding:10px 16px;
+
+}
+
+.pagination .page-item.active .page-link{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+.pagination .page-link:hover{
+
+    background:#e9f2ff;
+
+}
+
+/* =====================================================
+ANIMATIONS
+===================================================== */
+
+.job-card{
+
+    animation:fadeUp .5s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:992px){
+
+.job-card img{
+
+height:160px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.stats-card{
+
+margin-bottom:15px;
+
+}
+
+.job-card h5{
+
+font-size:18px;
+
+}
+
+.job-card .btn{
+
+font-size:14px;
+
+}
+
+.search-card .card-body{
+
+padding:20px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.job-card img{
+
+height:140px;
+
+}
+
+.pagination{
+
+flex-wrap:wrap;
+
+}
+
+.page-link{
+
+margin-bottom:8px;
+
+}
+
+}

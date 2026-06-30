@@ -1,5 +1,6 @@
 <?php
-include("includes/auth.php");
+require_once "../includes/jobseeker_auth.php";
+require_once "../config/config.php";
 
 $user_id = $_SESSION['user_id'];
 $message = "";
@@ -355,7 +356,7 @@ Account Information
 
 <th>Name</th>
 
-<td><?= htmlspecialchars($_SESSION['full_name']); ?></td>
+<?= htmlspecialchars($user['full_name']); ?>
 
 </tr>
 

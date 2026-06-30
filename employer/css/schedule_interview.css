@@ -1,0 +1,239 @@
+/*==================================================
+SCHEDULE INTERVIEW PAGE
+==================================================*/
+
+body{
+    background:#f5f7fb;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+.container,
+.container-fluid{
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+/*==================================================
+CARD
+==================================================*/
+
+.card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.card-header{
+    border:none;
+    padding:18px 25px;
+    background:linear-gradient(135deg,#0d6efd,#0a58ca);
+}
+
+.card-header h4{
+    color:#fff;
+    margin:0;
+    font-weight:600;
+}
+
+.card-body{
+    padding:30px;
+    background:#fff;
+}
+
+/*==================================================
+LABELS
+==================================================*/
+
+.form-label{
+    font-weight:600;
+    color:#495057;
+    margin-bottom:8px;
+}
+
+/*==================================================
+INPUTS
+==================================================*/
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    border:1px solid #dcdfe6;
+    min-height:48px;
+    transition:.3s;
+    box-shadow:none;
+}
+
+textarea.form-control{
+    min-height:140px;
+    resize:vertical;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#0d6efd;
+    box-shadow:0 0 0 .2rem rgba(13,110,253,.15);
+}
+
+/*==================================================
+BUTTONS
+==================================================*/
+
+.btn{
+    border-radius:10px;
+    padding:10px 24px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-success{
+    background:#198754;
+    border:none;
+}
+
+.btn-success:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(25,135,84,.3);
+}
+
+.btn-secondary:hover{
+    transform:translateY(-2px);
+}
+
+/*==================================================
+ALERTS
+==================================================*/
+
+.alert{
+    border:none;
+    border-radius:10px;
+    padding:15px 18px;
+    font-weight:500;
+}
+
+/*==================================================
+SELECT
+==================================================*/
+
+select option{
+    padding:10px;
+}
+
+/*==================================================
+TEXTAREA
+==================================================*/
+
+textarea{
+    line-height:1.6;
+}
+
+/*==================================================
+ICONS
+==================================================*/
+
+.bi{
+    margin-right:6px;
+}
+
+/*==================================================
+ROW SPACING
+==================================================*/
+
+.row>.col-md-3,
+.row>.col-md-4,
+.row>.col-md-6,
+.row>.col-md-8{
+    margin-bottom:10px;
+}
+
+/*==================================================
+PLACEHOLDER
+==================================================*/
+
+::placeholder{
+    color:#adb5bd;
+}
+
+/*==================================================
+DATE & TIME
+==================================================*/
+
+input[type="date"],
+input[type="time"]{
+    cursor:pointer;
+}
+
+/*==================================================
+FORM ANIMATION
+==================================================*/
+
+.card{
+    animation:fadeIn .4s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/*==================================================
+RESPONSIVE
+==================================================*/
+
+@media(max-width:768px){
+
+.card-body{
+
+padding:20px;
+
+}
+
+.btn{
+
+width:100%;
+margin-bottom:10px;
+
+}
+
+}
+
+/*==================================================
+PRINT
+==================================================*/
+
+@media print{
+
+body{
+
+background:#fff;
+
+}
+
+.btn,
+.card-header{
+
+display:none;
+
+}
+
+.card{
+
+box-shadow:none;
+border:1px solid #ccc;
+
+}
+
+}

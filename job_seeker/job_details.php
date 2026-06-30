@@ -1,5 +1,6 @@
 <?php
-include("includes/auth.php");
+require_once "../includes/jobseeker_auth.php";
+require_once "../config/config.php";
 
 if(!isset($_GET['id'])){
     header("Location: browse_jobs.php");

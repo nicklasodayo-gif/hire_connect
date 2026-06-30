@@ -1,6 +1,7 @@
 <?php
 session_start();
-include "connect.php";
+require_once "../includes/employer_auth.php";
+require_once "../config/config.php";
 
 if (!isset($_SESSION['employer_id'])) {
     header("Location: login.php ");

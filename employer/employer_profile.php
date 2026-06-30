@@ -1,6 +1,6 @@
 <?php
-include "includes/auth.php";
-include "../connect.php";
+require_once "../includes/employer_auth.php";
+require_once "../config/config.php";
 
 $employer_id = $_SESSION['user_id'];
 

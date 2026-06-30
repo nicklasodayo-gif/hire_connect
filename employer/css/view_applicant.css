@@ -1,0 +1,407 @@
+/* ==========================================
+VIEW APPLICANTS
+========================================== */
+
+body{
+    background:#f4f7fc;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+}
+
+/*==========================================
+MAIN CONTENT
+==========================================*/
+
+.main-content{
+    padding:25px;
+}
+
+/*==========================================
+CARDS
+==========================================*/
+
+.card{
+    border:none;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.card-header{
+    border:none;
+    padding:18px 25px;
+}
+
+.card-header h4{
+    margin:0;
+    font-weight:600;
+}
+
+/*==========================================
+STATISTICS CARDS
+==========================================*/
+
+.row.g-3 .card{
+
+    transition:.3s;
+
+}
+
+.row.g-3 .card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+
+}
+
+.row.g-3 h6{
+
+    color:#6c757d;
+
+    font-size:.95rem;
+
+}
+
+.row.g-3 h3{
+
+    font-weight:700;
+
+}
+
+/*==========================================
+SEARCH
+==========================================*/
+
+.form-control,
+.form-select{
+
+    min-height:45px;
+
+    border-radius:10px;
+
+    border:1px solid #dee2e6;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 .15rem rgba(13,110,253,.2);
+
+}
+
+/*==========================================
+TABLE
+==========================================*/
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead{
+
+    background:#212529;
+
+}
+
+.table th{
+
+    color:#fff;
+
+    vertical-align:middle;
+
+    white-space:nowrap;
+
+    font-weight:600;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+.table-hover tbody tr{
+
+    transition:.25s;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#eef5ff;
+
+}
+
+/*==========================================
+BADGES
+==========================================*/
+
+.badge{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:.8rem;
+
+    font-weight:500;
+
+}
+
+/*==========================================
+BUTTONS
+==========================================*/
+
+.btn{
+
+    border-radius:8px;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-sm{
+
+    padding:.35rem .65rem;
+
+}
+
+/*==========================================
+CHECKBOXES
+==========================================*/
+
+input[type="checkbox"]{
+
+    width:18px;
+
+    height:18px;
+
+    cursor:pointer;
+
+}
+
+/*==========================================
+PAGINATION
+==========================================*/
+
+.pagination{
+
+    gap:5px;
+
+}
+
+.page-link{
+
+    border-radius:8px;
+
+    border:none;
+
+    color:#0d6efd;
+
+}
+
+.page-item.active .page-link{
+
+    background:#0d6efd;
+
+}
+
+/*==========================================
+EMPTY STATE
+==========================================*/
+
+.bi-inbox{
+
+    color:#ced4da;
+
+}
+
+/*==========================================
+ALERTS
+==========================================*/
+
+.alert{
+
+    border:none;
+
+    border-radius:10px;
+
+}
+
+/*==========================================
+CARD ANIMATION
+==========================================*/
+
+.card{
+
+    animation:fadeIn .4s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/*==========================================
+TABLE SCROLL
+==========================================*/
+
+.table-responsive{
+
+    border-radius:10px;
+
+}
+
+/*==========================================
+ACTION BUTTONS
+==========================================*/
+
+td .btn{
+
+    margin:2px;
+
+}
+
+/*==========================================
+STATUS COLORS
+==========================================*/
+
+.bg-secondary{
+
+    background:#6c757d!important;
+
+}
+
+.bg-warning{
+
+    color:#000!important;
+
+}
+
+.bg-info{
+
+    color:#fff!important;
+
+}
+
+.bg-success{
+
+    color:#fff!important;
+
+}
+
+.bg-danger{
+
+    color:#fff!important;
+
+}
+
+.bg-primary{
+
+    color:#fff!important;
+
+}
+
+/*==========================================
+RESPONSIVE
+==========================================*/
+
+@media(max-width:992px){
+
+.table{
+
+    min-width:950px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.main-content{
+
+    padding:15px;
+
+}
+
+.card-header{
+
+    text-align:center;
+
+}
+
+.btn{
+
+    width:100%;
+
+    margin-bottom:6px;
+
+}
+
+}
+
+/*==========================================
+PRINT
+==========================================*/
+
+@media print{
+
+.sidebar,
+.topbar,
+form,
+.pagination,
+.btn{
+
+display:none!important;
+
+}
+
+.main-content{
+
+padding:0;
+
+}
+
+body{
+
+background:#fff;
+
+}
+
+.card{
+
+box-shadow:none;
+
+border:1px solid #ddd;
+
+}
+
+}

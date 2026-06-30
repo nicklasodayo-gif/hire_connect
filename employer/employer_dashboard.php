@@ -1,7 +1,38 @@
 <?php
-include "includes/auth.php";
+require_once "../includes/employer_auth.php";
+require_once "../config/config.php";
 
 $employer_id = $_SESSION['user_id'];
+
+// Upcoming Interviews
+$upcoming = $conn->query("
+SELECT COUNT(*) total
+FROM interviews
+WHERE interview_date >= CURDATE()
+AND status='Scheduled'
+")->fetch_assoc()['total'];
+
+// Today's Interviews
+$today = $conn->query("
+SELECT COUNT(*) total
+FROM interviews
+WHERE interview_date = CURDATE()
+")->fetch_assoc()['total'];
+
+// Completed Interviews
+$completed = $conn->query("
+SELECT COUNT(*) total
+FROM interviews
+WHERE status='Completed'
+")->fetch_assoc()['total'];
+
+// Cancelled Interviews
+$cancelled = $conn->query("
+SELECT COUNT(*) total
+FROM interviews
+WHERE status='Cancelled'
+")->fetch_assoc()['total'];
+
 
 /*
 |--------------------------------------------------------------------------
@@ -184,6 +215,129 @@ href="employer\assets\dashboard.css">
                     </div>
 
                 </div>
+
+                <div class="row mt-4">
+
+    <div class="col-lg-3 col-md-6 mb-3">
+
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+
+                        <h6 class="text-muted">
+                            Upcoming Interviews
+                        </h6>
+
+                        <h2><?= $upcoming ?></h2>
+
+                    </div>
+
+                    <i class="bi bi-calendar-event fs-1 text-primary"></i>
+
+                </div>
+
+                <a href="interview_list.php"
+                   class="btn btn-outline-primary btn-sm mt-3">
+
+                    View Interviews
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+
+                        <h6 class="text-muted">
+                            Today's Interviews
+                        </h6>
+
+                        <h2><?= $today ?></h2>
+
+                    </div>
+
+                    <i class="bi bi-calendar-check fs-1 text-success"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+
+                        <h6 class="text-muted">
+                            Completed
+                        </h6>
+
+                        <h2><?= $completed ?></h2>
+
+                    </div>
+
+                    <i class="bi bi-check-circle fs-1 text-info"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+
+                        <h6 class="text-muted">
+                            Cancelled
+                        </h6>
+
+                        <h2><?= $cancelled ?></h2>
+
+                    </div>
+
+                    <i class="bi bi-x-circle fs-1 text-danger"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
                 <div class="col-lg-3 col-md-6 mb-4">
 
